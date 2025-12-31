@@ -2,7 +2,28 @@ name: Database Migrations
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
+        default: 'auto'
+        description: 'Target environment (staging, production, or auto to detect from branch)'
+    secrets:
+      DATABASE_URL:
+        required: false
+        description: 'Production database URL'
+      STAGING_DATABASE_URL:
+        required: false
+        description: 'Staging database URL'
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
 
 jobs:
   migrate:
@@ -32,8 +53,47 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Apply migrations
+      - name: Determine target environment
+        id: env
+        env:
+          INPUT_ENV: ${{ inputs.environment }}
+          GIT_REF: ${{ github.ref }}
+        run: |
+          if [ "$INPUT_ENV" = "auto" ] || [ -z "$INPUT_ENV" ]; then
+            if [ "$GIT_REF" = "refs/heads/main" ]; then
+              echo "target=production" >> "$GITHUB_OUTPUT"
+            else
+              echo "target=staging" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "target=$INPUT_ENV" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Apply migrations to staging
+        if: steps.env.outputs.target == 'staging'
         working-directory: ./packages/db
         env:
-          DATABASE_URL: ${{ github.ref == 'refs/heads/main' && secrets.DATABASE_URL || secrets.STAGING_DATABASE_URL }}
-        run: bunx drizzle-kit migrate --config=./drizzle.config.ts
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+        run: |
+          echo "Applying migrations to STAGING database..."
+          bunx drizzle-kit migrate --config=./drizzle.config.ts
+
+      - name: Apply migrations to production
+        if: steps.env.outputs.target == 'production'
+        working-directory: ./packages/db
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "Applying migrations to PRODUCTION database..."
+          bunx drizzle-kit migrate --config=./drizzle.config.ts
+
+      - name: Migration summary
+        env:
+          TARGET_ENV: ${{ steps.env.outputs.target }}
+        run: |
+          {
+            echo "## Migration Complete"
+            echo ""
+            echo "**Target:** $TARGET_ENV"
+            echo "**Status:** Success"
+          } >> "$GITHUB_STEP_SUMMARY"
