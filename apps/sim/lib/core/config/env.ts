@@ -281,6 +281,11 @@ export const env = createEnv({
     SSO_SAML_SIGNATURE_ALGORITHM:          z.string().optional(),                  // SAML signature algorithm (optional)
     SSO_SAML_DIGEST_ALGORITHM:             z.string().optional(),                  // SAML digest algorithm (optional)
     SSO_SAML_IDENTIFIER_FORMAT:            z.string().optional(),                  // SAML identifier format (optional)
+
+    // WorkOS Enterprise Authentication
+    WORKOS_API_KEY:                        z.string().optional(),                  // WorkOS API key for server-side operations
+    WORKOS_CLIENT_ID:                      z.string().optional(),                  // WorkOS client ID for OAuth flows
+    WORKOS_WEBHOOK_SECRET:                 z.string().optional(),                  // WorkOS webhook signature verification secret
   },
 
   client: {

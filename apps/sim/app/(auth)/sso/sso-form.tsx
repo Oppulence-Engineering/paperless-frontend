@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { client } from '@/lib/auth/auth-client'
 import { env, isFalsy } from '@/lib/core/config/env'
+import { isWorkOSEnabled } from '@/lib/core/config/feature-flags'
 import { cn } from '@/lib/core/utils/cn'
 import { quickValidateEmail } from '@/lib/messaging/email/validation'
 import { inter } from '@/app/_styles/fonts/inter/inter'
@@ -146,6 +147,15 @@ export default function SSOForm() {
     try {
       const safeCallbackUrl = validateCallbackUrl(callbackUrl) ? callbackUrl : '/workspace'
 
+      // Use WorkOS SSO if enabled, otherwise fall back to Better Auth SSO
+      if (isWorkOSEnabled) {
+        // Redirect to WorkOS SSO authorization endpoint
+        const workosAuthUrl = `/api/auth/workos/authorize?email=${encodeURIComponent(emailValue)}&callbackUrl=${encodeURIComponent(safeCallbackUrl)}`
+        window.location.href = workosAuthUrl
+        return
+      }
+
+      // Fall back to Better Auth SSO
       await client.signIn.sso({
         email: emailValue,
         callbackURL: safeCallbackUrl,
