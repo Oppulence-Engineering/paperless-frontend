@@ -71,9 +71,15 @@ export const isRegistrationDisabled = isTruthy(env.DISABLE_REGISTRATION)
 export const isTriggerDevEnabled = isTruthy(env.TRIGGER_DEV_ENABLED)
 
 /**
- * Is SSO enabled for enterprise authentication
+ * Is SSO enabled for enterprise authentication (Better Auth SSO plugin)
  */
 export const isSsoEnabled = isTruthy(env.SSO_ENABLED)
+
+/**
+ * Is WorkOS enabled for enterprise authentication (SAML/OIDC via WorkOS)
+ * Auto-enabled when WORKOS_API_KEY and WORKOS_CLIENT_ID are configured
+ */
+export const isWorkOSEnabled = !!env.WORKOS_API_KEY && !!env.WORKOS_CLIENT_ID
 
 /**
  * Is E2B enabled for remote code execution

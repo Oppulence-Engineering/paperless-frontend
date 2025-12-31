@@ -50,5 +50,8 @@
   },
   "trustedDependencies": [
     "sharp"
-  ]
+  ],
+  "dependencies": {
+    "@workos-inc/node": "7.79.2"
+  }
 }

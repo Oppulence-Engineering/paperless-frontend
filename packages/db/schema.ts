@@ -1692,6 +1692,82 @@ export const ssoProvider = pgTable(
 export const usageLogCategoryEnum = pgEnum('usage_log_category', ['model', 'fixed'])
 export const usageLogSourceEnum = pgEnum('usage_log_source', ['workflow', 'wand', 'copilot'])
 
+// WorkOS Directory Sync - User state tracking
+export const workosDirectoryUsers = pgTable(
+  'workos_directory_users',
+  {
+    id: text('id').primaryKey(),
+    directoryId: text('directory_id').notNull(),
+    workosUserId: text('workos_user_id').notNull(),
+    userId: text('user_id').references(() => user.id, { onDelete: 'cascade' }),
+    organizationId: text('organization_id').references(() => organization.id, { onDelete: 'cascade' }),
+    email: text('email').notNull(),
+    firstName: text('first_name'),
+    lastName: text('last_name'),
+    state: text('state').notNull().default('active'), // 'active' or 'inactive'
+    rawAttributes: jsonb('raw_attributes').default('{}'),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  },
+  (table) => ({
+    directoryIdIdx: index('workos_directory_users_directory_id_idx').on(table.directoryId),
+    workosUserIdIdx: uniqueIndex('workos_directory_users_workos_user_id_idx').on(table.workosUserId),
+    userIdIdx: index('workos_directory_users_user_id_idx').on(table.userId),
+    organizationIdIdx: index('workos_directory_users_organization_id_idx').on(table.organizationId),
+    emailIdx: index('workos_directory_users_email_idx').on(table.email),
+  })
+)
+
+// WorkOS Directory Sync - Group state tracking
+export const workosDirectoryGroups = pgTable(
+  'workos_directory_groups',
+  {
+    id: text('id').primaryKey(),
+    directoryId: text('directory_id').notNull(),
+    workosGroupId: text('workos_group_id').notNull(),
+    name: text('name').notNull(),
+    organizationId: text('organization_id').references(() => organization.id, { onDelete: 'cascade' }),
+    rawAttributes: jsonb('raw_attributes').default('{}'),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  },
+  (table) => ({
+    directoryIdIdx: index('workos_directory_groups_directory_id_idx').on(table.directoryId),
+    workosGroupIdIdx: uniqueIndex('workos_directory_groups_workos_group_id_idx').on(table.workosGroupId),
+    organizationIdIdx: index('workos_directory_groups_organization_id_idx').on(table.organizationId),
+    nameIdx: index('workos_directory_groups_name_idx').on(table.name),
+  })
+)
+
+// WorkOS Audit Log cache for local queries
+export const workosAuditLogCache = pgTable(
+  'workos_audit_log_cache',
+  {
+    id: text('id').primaryKey(),
+    organizationId: text('organization_id').notNull(),
+    action: text('action').notNull(),
+    actorId: text('actor_id').notNull(),
+    actorName: text('actor_name'),
+    actorType: text('actor_type').notNull(), // 'user' or 'system'
+    targets: jsonb('targets').default('[]'),
+    context: jsonb('context'),
+    metadata: jsonb('metadata'),
+    occurredAt: timestamp('occurred_at').notNull(),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+  },
+  (table) => ({
+    organizationIdIdx: index('workos_audit_log_organization_id_idx').on(table.organizationId),
+    actorIdIdx: index('workos_audit_log_actor_id_idx').on(table.actorId),
+    actionIdx: index('workos_audit_log_action_idx').on(table.action),
+    occurredAtIdx: index('workos_audit_log_occurred_at_idx').on(table.occurredAt),
+    orgOccurredAtIdx: index('workos_audit_log_org_occurred_at_idx').on(
+      table.organizationId,
+      table.occurredAt
+    ),
+  })
+)
+
+// Usage logging for tracking individual billable operations
 export const usageLog = pgTable(
   'usage_log',
   {
