@@ -1,13 +1,18 @@
 # ========================================
-# Base Stage: Alpine Linux with Bun
+# Base Stage: Debian-based Bun (same as app for compatibility)
 # ========================================
-FROM oven/bun:1.3.3-alpine AS base
+FROM oven/bun:1.3.3-slim AS base
+
+# Install necessary dependencies for package installation and healthcheck
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates wget
 
 # ========================================
 # Dependencies Stage: Install Dependencies
 # ========================================
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json bun.lock turbo.json ./
@@ -19,8 +24,9 @@ COPY packages/logger/package.json ./packages/logger/package.json
 COPY packages/tsconfig/package.json ./packages/tsconfig/package.json
 
 # Install dependencies with cache mount for faster builds
+# Use --ignore-scripts to skip optional native modules that realtime doesn't need
 RUN --mount=type=cache,id=bun-cache,target=/root/.bun/install/cache \
-    bun install --omit=dev --ignore-scripts
+    HUSKY=0 bun install --omit=dev --ignore-scripts
 
 # ========================================
 # Builder Stage: Prepare source code
@@ -50,9 +56,9 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Create non-root user and group (cached separately)
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001
+# Create non-root user and group
+RUN groupadd -g 1001 nodejs && \
+    useradd -u 1001 -g nodejs nextjs
 
 # Copy package.json first (changes less frequently)
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
@@ -60,14 +66,19 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 # Copy node_modules from builder (cached if dependencies don't change)
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 
-# Copy db package (needed by socket)
+# Copy workspace packages (needed for dependency resolution)
 COPY --from=builder --chown=nextjs:nodejs /app/packages/db ./packages/db
-
-# Copy logger package (workspace dependency used by socket)
 COPY --from=builder --chown=nextjs:nodejs /app/packages/logger ./packages/logger
+COPY --from=builder --chown=nextjs:nodejs /app/packages/tsconfig ./packages/tsconfig
+COPY --from=builder --chown=nextjs:nodejs /app/packages/testing ./packages/testing
 
-# Copy sim app (changes most frequently - placed last)
+# Copy sim app source (changes most frequently - placed last)
 COPY --from=builder --chown=nextjs:nodejs /app/apps/sim ./apps/sim
+
+# Regenerate proper workspace symlinks without reinstalling packages
+# This fixes any stale symlinks from the builder stage
+RUN --mount=type=cache,id=bun-cache,target=/root/.bun/install/cache \
+    HUSKY=0 bun install --frozen-lockfile --ignore-scripts
 
 # Switch to non-root user
 USER nextjs

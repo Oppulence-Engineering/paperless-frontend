@@ -16,8 +16,12 @@ interface Logger {
  */
 export function createHttpHandler(roomManager: RoomManager, logger: Logger) {
   return (req: IncomingMessage, res: ServerResponse) => {
-    if (req.method === 'GET' && req.url === '/health') {
+    if (req.url === '/health' && (req.method === 'GET' || req.method === 'HEAD')) {
       res.writeHead(200, { 'Content-Type': 'application/json' })
+      if (req.method === 'HEAD') {
+        res.end()
+        return
+      }
       res.end(
         JSON.stringify({
           status: 'ok',
