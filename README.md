@@ -286,3 +286,76 @@ We welcome contributions! Please see our [Contributing Guide](.github/CONTRIBUTI
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 <p align="center">Made with ❤️ by the Sim Team</p>
+
+
+---
+
+## Paperless: Sales Data Infrastructure
+
+This repository is also home to **Paperless**, a data infrastructure layer for outbound sales that powers the next generation of sales automation.
+
+### What is Paperless?
+
+Paperless provides the data foundation that makes outbound sales actually work. While AI SDRs and email automation tools compete on features, they all depend on the same decaying databases. Paperless solves the root problem: **fresh data, verified by default**.
+
+### Core Capabilities
+
+#### 🔍 Real-Time Lead Scraping
+- Scrape Google Maps and partner databases in real-time
+- - Get fresh leads for any industry, location, or business type
+  - - No stale lists—data generated on-demand
+   
+    - #### ✅ Verification-First Architecture
+    - - Every email is verified before it appears in your list
+      - - Built-in, not add-on: <3% bounce rate vs industry 15-25%
+        - - Protect your sender reputation automatically
+         
+          - #### 🔄 Data Flywheel
+          - - Every search enriches a shared database
+            - - 200M+ partner database contacts
+              - - Better data as more users join
+               
+                - #### 📧 Visual Workflow Builder
+                - - Drag-and-drop email sequence builder
+                  - - Conditions, delays, and branching logic
+                    - - No code required
+                     
+                      - #### 📊 Engagement Tracking
+                      - - Track opens, clicks, and replies
+                        - - Full attribution back to campaigns
+                          - - Know who's engaging in real-time
+                           
+                            - ### Why Paperless?
+                           
+                            - | Challenge | Traditional Tools | Paperless |
+                            - |-----------|------------------|-----------|
+                            - | Data freshness | 30% annual decay | Real-time scraping |
+                            - | Email verification | Add-on ($0.03/email) | Built-in, free |
+                            - | Tool stack | 5-8 separate tools | Unified platform |
+                            - | Bounce rates | 15-25% | <3% |
+                           
+                            - ### The Three-Phase Vision
+                           
+                            - | Phase | Timeline | Focus | Value |
+                            - |-------|----------|-------|-------|
+                            - | 1 | Q1-Q2 2026 | Data Infrastructure | Fresh data, verified by default |
+                            - | 2 | Q3-Q4 2026 | Unified Sales Inbox | Never lose context on a prospect |
+                            - | 3 | 2027 | Relationship OS | Complete system for converting strangers |
+                           
+                            - ### Target Users
+                           
+                            - - **Marketing Agencies**: Manage outreach for multiple clients from one platform
+                              - - **SMB Sales Teams**: Find, verify, and contact leads without the enterprise price tag
+                                - - **Startup Founders**: Validate markets quickly with founder-led sales
+                                  - - **Recruiting Firms**: Source candidates and reach hiring managers at scale
+                                   
+                                    - ### Documentation
+                                   
+                                    - For detailed product requirements, roadmap, and technical specifications, see the [docs folder](./docs/).
+                                   
+                                    - ---
+
+                                    <p align="center">
+                                      <b>Paperless</b>b>: The data layer that makes outbound actually work.
+                                    </p>p>
+                                    </b>
