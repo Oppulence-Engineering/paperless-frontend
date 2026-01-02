@@ -325,8 +325,10 @@ export interface OnboardingStep<
 /**
  * Schema for OAuth provider configuration.
  * Defines supported OAuth providers for the onboarding flow.
+ * Note: Provider IDs should match betterAuth provider configurations
+ * (e.g., 'google-email' for Gmail with email scopes).
  */
-export const OAuthProviderSchema = z.enum(['google', 'github', 'microsoft', 'slack'])
+export const OAuthProviderSchema = z.enum(['google', 'google-email', 'github', 'microsoft', 'slack'])
 
 /** OAuth provider type */
 export type OAuthProvider = z.infer<typeof OAuthProviderSchema>

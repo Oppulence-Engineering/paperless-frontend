@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
 import { useQueryClient } from '@tanstack/react-query'
-import { Files, KeySquare, LogIn, Server, Settings, User, Users, Wrench } from 'lucide-react'
+import { Files, KeySquare, LogIn, Mail, Server, Settings, User, Users, Wrench } from 'lucide-react'
 import {
   Card,
   Connections,
@@ -31,6 +31,7 @@ import { getUserRole } from '@/lib/workspaces/organization'
 import {
   ApiKeys,
   BYOK,
+  ConnectedEmails,
   Copilot,
   CustomTools,
   EnvironmentVariables,
@@ -63,6 +64,7 @@ type SettingsSection =
   | 'environment'
   | 'template-profile'
   | 'integrations'
+  | 'connected-emails'
   | 'apikeys'
   | 'byok'
   | 'files'
@@ -114,6 +116,7 @@ const allNavigationItems: NavigationItem[] = [
     requiresTeam: true,
   },
   { id: 'integrations', label: 'Integrations', icon: Connections, section: 'tools' },
+  { id: 'connected-emails', label: 'Connected Emails', icon: Mail, section: 'tools' },
   { id: 'custom-tools', label: 'Custom Tools', icon: Wrench, section: 'tools' },
   { id: 'mcp', label: 'MCP Tools', icon: McpIcon, section: 'tools' },
   { id: 'environment', label: 'Environment', icon: FolderCode, section: 'system' },
@@ -462,6 +465,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                 registerCloseHandler={registerIntegrationsCloseHandler}
               />
             )}
+            {activeSection === 'connected-emails' && <ConnectedEmails />}
             {activeSection === 'apikeys' && <ApiKeys onOpenChange={onOpenChange} />}
             {activeSection === 'files' && <FileUploads />}
             {isBillingEnabled && activeSection === 'subscription' && <Subscription />}
