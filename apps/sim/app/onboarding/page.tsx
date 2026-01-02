@@ -9,6 +9,7 @@ import { OnboardingLayout } from './components/onboarding-layout'
 import { StepIndicator } from './components/step-indicator'
 import { CompletionStep } from './steps/completion-step'
 import { LeadScraperProvisioningStep } from './steps/lead-scraper-provisioning-step'
+import { GmailConnectionStep } from './steps/gmail-connection-step'
 
 const logger = createLogger('OnboardingPage')
 
@@ -175,6 +176,11 @@ function OnboardingPageContent() {
                 status: onboardingState?.stepStatuses?.['lead-scraper-provisioning'] || 'pending',
               },
               {
+                id: 'gmail-connection',
+                title: 'Connect Gmail',
+                status: onboardingState?.stepStatuses?.['gmail-connection'] || 'pending',
+              },
+              {
                 id: 'completion',
                 title: 'Get Started',
                 status: isComplete ? 'completed' : allStepsDone ? 'in_progress' : 'pending',
@@ -194,6 +200,16 @@ function OnboardingPageContent() {
                 handleStepComplete('lead-scraper-provisioning', result, true)
               }
               onError={(err) => logger.error('Lead Scraper step error', { error: err })}
+            />
+          )}
+
+          {currentStepId === 'gmail-connection' && !isComplete && !allStepsDone && (
+            <GmailConnectionStep
+              workspaceId={workspaceId}
+              onComplete={(result, alreadyMarkedComplete) =>
+                handleStepComplete('gmail-connection', result, alreadyMarkedComplete)
+              }
+              onError={(err) => logger.error('Gmail connection step error', { error: err })}
             />
           )}
 

@@ -19,12 +19,12 @@
  * | ID                          | Order | Required | Description                    |
  * |-----------------------------|-------|----------|--------------------------------|
  * | lead-scraper-provisioning   | 1     | Yes      | Provisions Lead Scraper org    |
+ * | gmail-connection            | 2     | Yes      | Connect Gmail via OAuth        |
  *
  * ## Future Steps (planned)
  *
  * | ID                  | Order | Required | Description                    |
  * |---------------------|-------|----------|--------------------------------|
- * | gmail-connection    | 2     | No       | Connect Gmail via OAuth        |
  * | company-profile     | 3     | No       | Collect company information    |
  */
 
@@ -33,17 +33,24 @@ import {
   leadScraperProvisioningStep,
   type LeadScraperProvisioningResult,
 } from './lead-scraper-provisioning'
+import {
+  gmailConnectionStep,
+  type GmailConnectionResult,
+} from './gmail-connection'
 
 // =============================================================================
 // Step Registration
 // =============================================================================
 
 // Register the Lead Scraper provisioning step
-// This is the first and currently only required step
+// This is the first required step - provisions Lead Scraper organization
 stepRegistry.register(leadScraperProvisioningStep)
 
+// Register the Gmail connection step
+// Second required step - enables email outreach functionality
+stepRegistry.register(gmailConnectionStep)
+
 // Future steps would be registered here:
-// stepRegistry.register(gmailConnectionStep)
 // stepRegistry.register(companyProfileStep)
 
 // =============================================================================
@@ -51,7 +58,7 @@ stepRegistry.register(leadScraperProvisioningStep)
 // =============================================================================
 
 // Export step definitions for external access
-export { leadScraperProvisioningStep }
+export { leadScraperProvisioningStep, gmailConnectionStep }
 
 // Export step result types for type-safe access
-export type { LeadScraperProvisioningResult }
+export type { LeadScraperProvisioningResult, GmailConnectionResult }

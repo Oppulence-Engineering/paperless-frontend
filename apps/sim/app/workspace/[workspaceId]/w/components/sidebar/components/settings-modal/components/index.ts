@@ -1,5 +1,6 @@
 export { ApiKeys } from './api-keys/api-keys'
 export { BYOK } from './byok/byok'
+export { ConnectedEmails } from './connected-emails/connected-emails'
 export { Copilot } from './copilot/copilot'
 export { CustomTools } from './custom-tools/custom-tools'
 export { EnvironmentVariables } from './environment/environment'

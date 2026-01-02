@@ -864,6 +864,61 @@ export const workspace = pgTable('workspace', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 })
 
+/**
+ * Junction table linking OAuth accounts to workspaces.
+ *
+ * Supports multiple email accounts per workspace for email outreach.
+ * The `account` table (managed by betterAuth) stores the actual OAuth tokens,
+ * while this table associates those accounts with specific workspaces.
+ *
+ * Design considerations:
+ * - `isPrimary`: Designates the default account for workflows
+ * - `provider`: Allows filtering by service type (e.g., 'google-email', 'outlook')
+ * - `displayName`: Stores user-friendly email for UI display
+ * - Cascade delete on both workspace and account ensures cleanup
+ */
+export const workspaceOAuthAccount = pgTable(
+  'workspace_oauth_account',
+  {
+    id: text('id').primaryKey(),
+    /** Workspace this account is linked to */
+    workspaceId: text('workspace_id')
+      .notNull()
+      .references(() => workspace.id, { onDelete: 'cascade' }),
+    /** OAuth account from betterAuth's account table */
+    accountId: text('account_id')
+      .notNull()
+      .references(() => account.id, { onDelete: 'cascade' }),
+    /** Provider identifier (e.g., 'google-email', 'outlook') */
+    provider: text('provider').notNull(),
+    /** User-friendly display name (typically the email address) */
+    displayName: text('display_name'),
+    /** Whether this is the primary/default account for the workspace */
+    isPrimary: boolean('is_primary').notNull().default(false),
+    /** When this account was linked to the workspace */
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+  },
+  (table) => ({
+    // Primary access pattern - get all accounts for a workspace
+    workspaceIdIdx: index('workspace_oauth_account_workspace_id_idx').on(table.workspaceId),
+    // Filter by provider type
+    workspaceProviderIdx: index('workspace_oauth_account_workspace_provider_idx').on(
+      table.workspaceId,
+      table.provider
+    ),
+    // Find primary account quickly
+    workspacePrimaryIdx: index('workspace_oauth_account_workspace_primary_idx').on(
+      table.workspaceId,
+      table.isPrimary
+    ),
+    // Prevent duplicate links (same account can't be linked twice to same workspace)
+    workspaceAccountUnique: uniqueIndex('workspace_oauth_account_workspace_account_unique').on(
+      table.workspaceId,
+      table.accountId
+    ),
+  })
+)
+
 export const workspaceFile = pgTable(
   'workspace_file',
   {
