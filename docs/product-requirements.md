@@ -667,6 +667,615 @@ Being explicit about scope prevents scope creep and team confusion.
 
 ---
 
+# Technical Architecture
+
+## System Architecture Overview
+
+```
+PAPERLESS SYSTEM ARCHITECTURE
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                 CLIENT LAYER                                     │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐              │
+│   │  Web App        │   │  API Clients    │   │  Webhooks       │              │
+│   │  (Next.js 14)   │   │  (REST/gRPC)    │   │  (Inbound)      │              │
+│   └────────┬────────┘   └────────┬────────┘   └────────┬────────┘              │
+│            │                     │                     │                        │
+└────────────┼─────────────────────┼─────────────────────┼────────────────────────┘
+             │                     │                     │
+             └─────────────────────┼─────────────────────┘
+                                   │
+                                   ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                               API GATEWAY (KrakenD)                              │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│  • Authentication (JWT validation)                                               │
+│  • Rate limiting (per-user, per-endpoint)                                       │
+│  • Request routing and load balancing                                           │
+│  • Response caching (GET endpoints)                                             │
+│  • Request/response transformation                                               │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                   │
+         ┌─────────────────────────┼─────────────────────────┐
+         │                         │                         │
+         ▼                         ▼                         ▼
+┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
+│  Lead Service   │   │ Scraping Service│   │ Workflow Service│
+│                 │   │                 │   │                 │
+│  • CRUD ops     │   │  • Job mgmt     │   │  • Builder API  │
+│  • Search       │   │  • Progress     │   │  • Execution    │
+│  • Filtering    │   │  • Results      │   │  • Scheduling   │
+│  • Bulk actions │   │                 │   │                 │
+└────────┬────────┘   └────────┬────────┘   └────────┬────────┘
+         │                     │                     │
+         │            ┌────────┴────────┐            │
+         │            │                 │            │
+         │            ▼                 ▼            │
+         │   ┌─────────────────┐   ┌─────────────────┐
+         │   │ Verification    │   │ Email Service   │
+         │   │ Service         │   │                 │
+         │   │                 │   │  • Sending      │
+         │   │  • Queue mgmt   │   │  • Tracking     │
+         │   │  • Multi-provider│   │  • Templates   │
+         │   │  • Caching      │   │                 │
+         │   └────────┬────────┘   └────────┬────────┘
+         │            │                     │
+         └────────────┼─────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                               DATA LAYER                                         │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐              │
+│   │  PostgreSQL     │   │  Redis          │   │  ClickHouse     │              │
+│   │                 │   │                 │   │                 │              │
+│   │  • Primary data │   │  • Caching      │   │  • Analytics    │              │
+│   │  • PostGIS geo  │   │  • Sessions     │   │  • Time-series  │              │
+│   │  • Transactions │   │  • Job queues   │   │  • Aggregations │              │
+│   │                 │   │  • PubSub       │   │                 │              │
+│   └─────────────────┘   └─────────────────┘   └─────────────────┘              │
+│                                                                                  │
+│   ┌─────────────────┐   ┌─────────────────┐                                     │
+│   │  S3 / MinIO     │   │  Elasticsearch  │                                     │
+│   │                 │   │  (Future)       │                                     │
+│   │  • File storage │   │  • Full-text    │                                     │
+│   │  • Exports      │   │  • Advanced     │                                     │
+│   │  • Backups      │   │    search       │                                     │
+│   └─────────────────┘   └─────────────────┘                                     │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                          BACKGROUND WORKERS                                      │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐              │
+│   │ Scraping Workers│   │ Verification    │   │ Workflow        │              │
+│   │                 │   │ Workers         │   │ Execution       │              │
+│   │  • Playwright   │   │                 │   │                 │              │
+│   │  • Proxy mgmt   │   │  • ZeroBounce   │   │  • Email sends  │              │
+│   │  • Rate limiting│   │  • NeverBounce  │   │  • Delays       │              │
+│   │                 │   │  • Caching      │   │  • Conditions   │              │
+│   └─────────────────┘   └─────────────────┘   └─────────────────┘              │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Technology Stack Details
+
+| Layer | Technology | Version | Rationale |
+|-------|------------|---------|-----------|
+| **Frontend** | Next.js | 14.x | App Router, RSC, excellent DX |
+| **UI Framework** | React | 18.x | Industry standard, large ecosystem |
+| **Styling** | Tailwind CSS | 3.x | Utility-first, rapid development |
+| **UI Components** | shadcn/ui | Latest | Accessible, customizable, copy-paste |
+| **State Management** | Zustand | 4.x | Simple, performant, middleware support |
+| **Forms** | React Hook Form | 7.x | Performance, validation integration |
+| **Workflow Canvas** | ReactFlow | 11.x | Battle-tested node-based UI |
+| **Auth** | Better Auth | Latest | Flexible, self-hostable, modern |
+| **Backend Language** | Go | 1.21+ | Fast, efficient, great concurrency |
+| **API Framework** | Chi / Fiber | Latest | Lightweight, fast, middleware support |
+| **ORM** | GORM | 2.x | Go standard, good PostgreSQL support |
+| **Job Queue** | Asynq | Latest | Redis-based, reliable, simple |
+| **Database** | PostgreSQL | 16.x | Reliable, PostGIS, JSON support |
+| **Geo Extension** | PostGIS | 3.x | Spatial queries, geography types |
+| **Cache** | Redis | 7.x | Fast, versatile, pub/sub |
+| **Analytics DB** | ClickHouse | 23.x | Columnar, time-series optimized |
+| **Scraping** | Playwright | Latest | Reliable browser automation |
+| **Proxy Provider** | BrightData | N/A | Residential proxies, rotation |
+| **Verification** | ZeroBounce + NeverBounce | N/A | Multi-provider redundancy |
+| **Email Sending** | Resend / Postmark | N/A | Developer-friendly, deliverability |
+| **Payments** | Stripe | N/A | Industry standard, good APIs |
+| **Infrastructure** | Kubernetes | 1.28+ | Scalable, self-host ready |
+| **CI/CD** | GitHub Actions | N/A | Integrated, good ecosystem |
+| **Observability** | OpenTelemetry | Latest | Vendor-neutral, comprehensive |
+
+---
+
+# Complete Data Model
+
+## Entity-Relationship Overview
+
+```
+ENTITY RELATIONSHIP DIAGRAM
+
+┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
+│     Users       │       │   Workspaces    │       │ Workspace       │
+│─────────────────│       │─────────────────│       │ Members         │
+│ id              │◄──────│ owner_id        │       │─────────────────│
+│ email           │       │ id              │◄──────│ workspace_id    │
+│ name            │       │ name            │       │ user_id         │
+│ avatar_url      │       │ slug            │       │ role            │
+│ created_at      │       │ settings        │       │ invited_at      │
+└─────────────────┘       └────────┬────────┘       │ joined_at       │
+                                   │                └─────────────────┘
+         ┌─────────────────────────┼─────────────────────────┐
+         │                         │                         │
+         ▼                         ▼                         ▼
+┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
+│  Global Leads   │       │ Workspace Leads │       │     Lists       │
+│─────────────────│       │─────────────────│       │─────────────────│
+│ id              │◄──────│ global_lead_id  │       │ id              │
+│ place_id        │       │ workspace_id    │───────│ workspace_id    │
+│ name            │       │ tags            │       │ name            │
+│ address         │       │ notes           │       │ description     │
+│ phone           │       │ custom_fields   │       │ lead_count      │
+│ website         │       │ engagement      │       │ created_at      │
+│ email           │       │ created_at      │       └────────┬────────┘
+│ email_status    │       └─────────────────┘                │
+│ verified_at     │                                          │
+│ geo_point       │                                          │
+│ scrape_count    │       ┌─────────────────┐                │
+│ last_scraped_at │       │  List Members   │◄───────────────┘
+└─────────────────┘       │─────────────────│
+                          │ list_id         │
+         ┌────────────────│ workspace_lead  │
+         │                │ added_at        │
+         │                └─────────────────┘
+         │
+         ▼
+┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
+│   Workflows     │       │ Workflow Nodes  │       │ Workflow Edges  │
+│─────────────────│       │─────────────────│       │─────────────────│
+│ id              │◄──────│ workflow_id     │       │ workflow_id     │
+│ workspace_id    │       │ id              │◄──────│ source_node_id  │
+│ name            │       │ type            │       │ target_node_id  │
+│ status          │       │ config          │       │ condition       │
+│ trigger_config  │       │ position_x      │       └─────────────────┘
+│ created_at      │       │ position_y      │
+└────────┬────────┘       └─────────────────┘
+         │
+         ▼
+┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
+│ Workflow Runs   │       │ Run Step Logs   │       │ Email Events    │
+│─────────────────│       │─────────────────│       │─────────────────│
+│ id              │◄──────│ run_id          │       │ id              │
+│ workflow_id     │       │ node_id         │       │ workspace_id    │
+│ lead_id         │       │ status          │       │ lead_id         │
+│ status          │       │ started_at      │       │ email_id        │
+│ started_at      │       │ completed_at    │       │ event_type      │
+│ completed_at    │       │ error           │       │ metadata        │
+│ current_node    │       │ output          │       │ created_at      │
+└─────────────────┘       └─────────────────┘       └─────────────────┘
+```
+
+## Complete Table Definitions
+
+### Users & Authentication
+
+```sql
+-- Users table
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    email_verified BOOLEAN DEFAULT FALSE,
+    password_hash VARCHAR(255),  -- NULL for OAuth-only users
+    name VARCHAR(255),
+    avatar_url VARCHAR(500),
+    
+    -- Settings
+    timezone VARCHAR(50) DEFAULT 'UTC',
+    locale VARCHAR(10) DEFAULT 'en-US',
+    preferences JSONB DEFAULT '{}',
+    
+    -- Metadata
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    last_login_at TIMESTAMPTZ,
+    
+    -- Soft delete
+    deleted_at TIMESTAMPTZ
+);
+
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_created ON users(created_at);
+
+-- OAuth accounts
+CREATE TABLE oauth_accounts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    provider VARCHAR(50) NOT NULL,  -- 'google', 'github', etc.
+    provider_account_id VARCHAR(255) NOT NULL,
+    access_token TEXT,
+    refresh_token TEXT,
+    token_expires_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    
+    UNIQUE(provider, provider_account_id)
+);
+
+CREATE INDEX idx_oauth_user ON oauth_accounts(user_id);
+
+-- Sessions
+CREATE TABLE sessions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token VARCHAR(255) NOT NULL UNIQUE,
+    ip_address INET,
+    user_agent TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    expires_at TIMESTAMPTZ NOT NULL,
+    
+    -- Activity tracking
+    last_activity_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_sessions_token ON sessions(token);
+CREATE INDEX idx_sessions_user ON sessions(user_id);
+CREATE INDEX idx_sessions_expires ON sessions(expires_at);
+```
+
+### Workspaces & Teams
+
+```sql
+-- Workspaces
+CREATE TABLE workspaces (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    owner_id UUID NOT NULL REFERENCES users(id),
+    
+    -- Identity
+    name VARCHAR(255) NOT NULL,
+    slug VARCHAR(100) NOT NULL UNIQUE,
+    logo_url VARCHAR(500),
+    
+    -- Subscription
+    tier VARCHAR(20) NOT NULL DEFAULT 'free'
+        CHECK (tier IN ('free', 'starter', 'pro', 'business', 'enterprise')),
+    stripe_customer_id VARCHAR(255),
+    stripe_subscription_id VARCHAR(255),
+    subscription_status VARCHAR(20) DEFAULT 'active',
+    billing_email VARCHAR(255),
+    
+    -- Usage limits (per billing period)
+    leads_limit INTEGER NOT NULL DEFAULT 100,
+    leads_used INTEGER NOT NULL DEFAULT 0,
+    scrapes_limit INTEGER NOT NULL DEFAULT 0,
+    scrapes_used INTEGER NOT NULL DEFAULT 0,
+    billing_period_start DATE,
+    billing_period_end DATE,
+    
+    -- Settings
+    settings JSONB DEFAULT '{}',
+    
+    -- Metadata
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_workspaces_owner ON workspaces(owner_id);
+CREATE INDEX idx_workspaces_slug ON workspaces(slug);
+CREATE INDEX idx_workspaces_tier ON workspaces(tier);
+
+-- Workspace members
+CREATE TABLE workspace_members (
+    workspace_id UUID NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    
+    role VARCHAR(20) NOT NULL DEFAULT 'member'
+        CHECK (role IN ('owner', 'admin', 'member', 'viewer')),
+    
+    -- Invitation tracking
+    invited_by UUID REFERENCES users(id),
+    invited_at TIMESTAMPTZ,
+    joined_at TIMESTAMPTZ DEFAULT NOW(),
+    
+    PRIMARY KEY (workspace_id, user_id)
+);
+
+CREATE INDEX idx_members_user ON workspace_members(user_id);
+CREATE INDEX idx_members_workspace ON workspace_members(workspace_id);
+```
+
+---
+
+# API Specifications
+
+## Authentication
+
+All API requests require authentication via Bearer token:
+
+```
+Authorization: Bearer <access_token>
+```
+
+### Error Response Format
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Human-readable error message",
+    "details": {
+      "field": "email",
+      "reason": "Invalid email format"
+    }
+  }
+}
+```
+
+### Standard Error Codes
+
+| Code | HTTP Status | Description |
+|------|-------------|-------------|
+| `UNAUTHORIZED` | 401 | Invalid or expired token |
+| `FORBIDDEN` | 403 | Insufficient permissions |
+| `NOT_FOUND` | 404 | Resource not found |
+| `VALIDATION_ERROR` | 400 | Request validation failed |
+| `RATE_LIMITED` | 429 | Too many requests |
+| `QUOTA_EXCEEDED` | 402 | Usage quota exceeded |
+| `INTERNAL_ERROR` | 500 | Server error |
+
+## Core Endpoints
+
+### Leads API
+
+#### List Leads
+
+```http
+GET /api/v1/workspaces/{workspace_id}/leads
+```
+
+**Query Parameters:**
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `page` | integer | Page number | 1 |
+| `limit` | integer | Results per page (max 100) | 25 |
+| `sort` | string | Sort field | `created_at` |
+| `order` | string | Sort order (asc/desc) | `desc` |
+| `search` | string | Full-text search query | - |
+| `email_status` | string | Filter by verification status | - |
+| `list_id` | uuid | Filter by list membership | - |
+| `tags` | string[] | Filter by tags (comma-separated) | - |
+| `city` | string | Filter by city | - |
+| `state` | string | Filter by state | - |
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "global_lead_id": "uuid",
+      "name": "Austin Plumbing Pros",
+      "address": "1234 Main St, Austin, TX 78701",
+      "phone": "+15125551234",
+      "website": "https://austinplumbing.com",
+      "email": "john@austinplumbing.com",
+      "email_status": "verified",
+      "email_verified_at": "2024-01-15T10:30:00Z",
+      "google_rating": 4.7,
+      "review_count": 234,
+      "category": "Plumber",
+      "tags": ["hot-lead", "q1-campaign"],
+      "engagement": {
+        "emails_sent": 2,
+        "emails_opened": 5,
+        "emails_clicked": 1,
+        "last_opened_at": "2024-01-16T14:22:00Z"
+      },
+      "created_at": "2024-01-15T10:30:00Z"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 25,
+    "total": 847,
+    "total_pages": 34
+  }
+}
+```
+
+#### Create Scraping Job
+
+```http
+POST /api/v1/workspaces/{workspace_id}/scraping-jobs
+```
+
+**Request Body:**
+
+```json
+{
+  "query": "plumbers",
+  "location": {
+    "display": "Austin, TX",
+    "latitude": 30.2672,
+    "longitude": -97.7431
+  },
+  "radius_miles": 25,
+  "depth": 3
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "id": "uuid",
+    "status": "queued",
+    "estimated_leads": 60,
+    "estimated_seconds": 120,
+    "credits_used": 3,
+    "created_at": "2024-01-15T10:30:00Z"
+  }
+}
+```
+
+---
+
+# Testing Strategy
+
+## Test Pyramid
+
+```
+                    ┌───────────────────┐
+                    │     E2E Tests     │  10%
+                    │  (Critical paths) │
+                    └─────────┬─────────┘
+                              │
+              ┌───────────────┴───────────────┐
+              │      Integration Tests        │  30%
+              │   (Service interactions)      │
+              └───────────────┬───────────────┘
+                              │
+    ┌─────────────────────────┴─────────────────────────┐
+    │                  Unit Tests                        │  60%
+    │        (Functions, components, utilities)          │
+    └────────────────────────────────────────────────────┘
+```
+
+## Coverage Targets
+
+| Layer | Target Coverage | Critical Paths |
+|-------|-----------------|----------------|
+| **API Endpoints** | 90%+ | CRUD operations, auth flows |
+| **Business Logic** | 85%+ | Verification, workflow execution |
+| **Database Layer** | 80%+ | Queries, migrations |
+| **UI Components** | 70%+ | Forms, interactive elements |
+| **Utilities** | 95%+ | Helpers, formatters |
+
+## Test Categories
+
+### Unit Tests
+
+```typescript
+// Example: Verification status calculation
+describe('calculateVerificationStatus', () => {
+  it('returns "verified" for valid SMTP response', () => {
+    const result = calculateVerificationStatus({
+      syntax: true,
+      mxRecords: true,
+      smtpValid: true,
+      catchAll: false
+    });
+    expect(result).toBe('verified');
+  });
+
+  it('returns "risky" for catch-all domains', () => {
+    const result = calculateVerificationStatus({
+      syntax: true,
+      mxRecords: true,
+      smtpValid: true,
+      catchAll: true
+    });
+    expect(result).toBe('risky');
+  });
+
+  it('returns "invalid" for missing MX records', () => {
+    const result = calculateVerificationStatus({
+      syntax: true,
+      mxRecords: false,
+      smtpValid: false,
+      catchAll: false
+    });
+    expect(result).toBe('invalid');
+  });
+});
+```
+
+### Integration Tests
+
+```go
+// Example: Scraping job creation
+func TestCreateScrapingJob(t *testing.T) {
+    // Setup
+    db := setupTestDB(t)
+    defer db.Close()
+    
+    service := NewScrapingService(db, mockQueue, mockCredits)
+    
+    t.Run("creates job with valid input", func(t *testing.T) {
+        req := CreateScrapingJobRequest{
+            Query: "plumbers",
+            Location: Location{
+                Display:   "Austin, TX",
+                Latitude:  30.2672,
+                Longitude: -97.7431,
+            },
+            RadiusMiles: 25,
+            Depth:       3,
+        }
+        
+        job, err := service.CreateJob(ctx, workspaceID, userID, req)
+        
+        assert.NoError(t, err)
+        assert.Equal(t, "queued", job.Status)
+        assert.Equal(t, 3, job.CreditsUsed)
+    })
+    
+    t.Run("rejects job when insufficient credits", func(t *testing.T) {
+        mockCredits.SetBalance(0)
+        
+        _, err := service.CreateJob(ctx, workspaceID, userID, req)
+        
+        assert.ErrorIs(t, err, ErrInsufficientCredits)
+    })
+}
+```
+
+### E2E Tests
+
+```typescript
+// Example: Complete scraping flow
+describe('Scraping E2E', () => {
+  it('completes full scraping workflow', async () => {
+    // Login
+    await page.goto('/login');
+    await page.fill('[data-testid="email"]', 'test@example.com');
+    await page.fill('[data-testid="password"]', 'password');
+    await page.click('[data-testid="login-button"]');
+    
+    // Navigate to scraping
+    await page.click('[data-testid="nav-scraping"]');
+    
+    // Fill scraping form
+    await page.fill('[data-testid="query-input"]', 'plumbers');
+    await page.fill('[data-testid="location-input"]', 'Austin, TX');
+    await page.selectOption('[data-testid="depth-select"]', '3');
+    
+    // Start scraping
+    await page.click('[data-testid="start-scraping"]');
+    
+    // Wait for completion (with timeout)
+    await page.waitForSelector('[data-testid="scraping-complete"]', {
+      timeout: 180000 // 3 minutes
+    });
+    
+    // Verify results
+    const leadCount = await page.textContent('[data-testid="leads-found"]');
+    expect(parseInt(leadCount)).toBeGreaterThan(0);
+  });
+});
+```
+
+---
+
 # Risks & Mitigations
 
 ## Technical Risks

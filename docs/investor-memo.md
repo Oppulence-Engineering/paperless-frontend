@@ -31,6 +31,136 @@ We combine real-time data scraping (Google Maps, live web), partner database acc
 
 ---
 
+## Pitch Versions
+
+### 30-Second Pitch (Elevator)
+
+> "Everyone's building AI sales tools that send more emails faster. But they all use the same decaying databases—30% of contacts are stale. We're Paperless: fresh data scraped in real-time, verified before you see it. While AI SDRs burn sender reputations with bad data, we're the infrastructure layer that makes outbound actually work. We're targeting $4M ARR by Year 3, and the AI SDR wave will either buy from us or fail without us."
+
+### 2-Minute Pitch (Meeting Opener)
+
+> "The sales tech world is flooding into AI SDRs—Clay raised $500M, 11x raised $50M. They're all building AI that writes better emails. But here's the problem they're ignoring: AI can't fix bad data.
+>
+> Every AI SDR pulls from Apollo or ZoomInfo, where 30% of contacts are stale. They're writing brilliant personalized emails to people who changed jobs last year. The result? Bounced emails, burned domains, wasted spend.
+>
+> We're Paperless, and we're building the data infrastructure layer. Three things make us different:
+>
+> First, **fresh data**: We scrape Google Maps in real-time—not cached lists from 6 months ago.
+>
+> Second, **verification by default**: Every email is verified before you see it. Not as an add-on, not for extra cost—baked into the architecture.
+>
+> Third, **the data flywheel**: Every user's searches make the database better. More users means fresher data means more users. This is a moat AI feature companies can't replicate.
+>
+> We're targeting agencies and SMB sales teams—$49 to $349/month. Year 1: $240K ARR. Year 3: $4.2M ARR with 2,500 customers.
+>
+> The AI SDR wave is creating the problem we solve. They'll either partner with us, acquire us, or fail."
+
+### 5-Minute Pitch (Full Meeting)
+
+> "Let me tell you about the biggest mistake being made in sales tech right now—and why it's our opportunity.
+>
+> **The Market Mistake**
+>
+> In the last 18 months, $700M+ has flooded into 'AI SDR' companies. Clay, 11x, Artisan, Regie—they're all racing to build AI that prospects and emails autonomously. The pitch sounds great: 'Replace your SDR team with AI at 1/10th the cost.'
+>
+> But they all have the same fatal flaw: bad data.
+>
+> Every one of these companies pulls from Apollo, ZoomInfo, or similar databases. These databases have 25-35% annual decay rates. That means 1 in 3 contacts are wrong—changed jobs, wrong email, company closed.
+>
+> What happens when you combine AI volume with bad data? You get personalized spam at scale. You burn sender reputations. You damage domains. We're already seeing early AI SDR customers reporting domain damage within months.
+>
+> **Why AI Can't Fix This**
+>
+> AI can write better emails. It can research companies. It can personalize at scale. What it cannot do is verify that john@company.com still works there. That's not an AI problem—that's a data infrastructure problem.
+>
+> **Our Solution: Paperless**
+>
+> We're building the data layer that makes outbound work:
+>
+> 1. **Real-time scraping**: When you search for 'plumbers in Austin,' we scrape Google Maps live. Not a cached list—fresh data from that moment.
+>
+> 2. **Verification-first architecture**: Every email is verified before you see it. Invalid emails are filtered out. Risky catch-alls are flagged. This isn't an add-on—it's how the product works.
+>
+> 3. **The Data Flywheel**: Every user's scrapes enrich a shared database. By Year 3, 95% of searches can be served instantly from cache. More users = fresher data = more users. This is network effects that AI feature companies can't buy.
+>
+> 4. **Full pipeline**: Find → Verify → Automate → Track. No CSV exports, no tool switching.
+>
+> **The Business Model**
+>
+> We're SaaS, tiered by usage:
+> - Starter: $49/mo (founders, solo operators)
+> - Pro: $149/mo (SMB sales teams)
+> - Business: $349/mo (agencies, high volume)
+> - Enterprise: Custom (self-host, API access)
+>
+> Unit economics are strong: LTV of $2,160, CAC of $180, LTV:CAC of 12:1.
+>
+> **The Numbers**
+>
+> - Year 1: $240K ARR, 200 customers
+> - Year 3: $4.2M ARR, 2,500 customers
+> - Gross margin improves from 77% to 94% as flywheel compounds
+>
+> **The Strategic Position**
+>
+> We're not competing with AI SDRs—we're the infrastructure they need. As the AI SDR market consolidates (and it will—most will fail), the survivors will need clean data. They'll either:
+> 1. Build data infrastructure themselves (expensive, not their competency)
+> 2. Partner with us (revenue opportunity)
+> 3. Acquire us (exit opportunity)
+> 4. Keep failing with bad data
+>
+> **The Ask**
+>
+> We're raising [amount] at [valuation] to:
+> - Accelerate product development (2 senior engineers)
+> - Scale go-to-market (content, paid acquisition)
+> - Build the data flywheel faster
+>
+> The AI SDR wave is creating the problem. We're building the solution. The timing is now."
+
+---
+
+## Investment Thesis Summary
+
+### Why Now?
+
+| Factor | 2023 | 2025-2026 | Implication |
+|--------|------|-----------|-------------|
+| **Email authentication** | Optional | Mandatory (Google/Yahoo) | Verification = table stakes |
+| **AI SDR investment** | Early hype | $700M+, correction starting | Infrastructure wins |
+| **Data decay awareness** | Low | High (driving decisions) | Fresh data = differentiator |
+| **SMB tool fatigue** | Growing | Active consolidation | Unified platforms win |
+| **AI SDR failure rate** | Unknown | Becoming visible | Counter-positioning works |
+
+### Why Us?
+
+1. **Technical Depth**: Team has built scraping infrastructure at scale; understands verification pipeline architecture
+2. **Market Timing**: Entering at inflection point as AI SDR problems become visible
+3. **Contrarian Position**: Not fighting AI feature war; building foundational layer
+4. **Moat Potential**: Data flywheel creates compounding network effects
+5. **Unit Economics**: 12:1 LTV:CAC with improving margins over time
+
+### Why This?
+
+1. **Large Market**: $3.4B TAM with fragmented SMB segment underserved
+2. **Clear Pain**: 30% data decay, 15-25% bounce rates, tool fragmentation
+3. **Defensible**: Flywheel creates network effects; verification-first is architectural
+4. **Scalable**: SaaS model with improving unit economics
+5. **Multiple Exit Paths**: Strategic acquirers (AI SDR companies, CRM vendors), IPO at scale
+
+### Key Metrics to Watch
+
+| Metric | Month 6 | Year 1 | Year 3 | Why It Matters |
+|--------|---------|--------|--------|----------------|
+| **MRR** | $10K | $20K | $350K | Revenue traction |
+| **Customers** | 100 | 200 | 2,500 | Market validation |
+| **Bounce Rate** | <3% | <3% | <2% | Core value delivery |
+| **NPS** | >40 | >50 | >60 | Product-market fit |
+| **Monthly Churn** | <5% | <4% | <2.5% | Retention proof |
+| **Flywheel Cache %** | 10% | 50% | 95% | Moat building |
+
+---
+
 # Table of Contents
 
 1. [The Vision: From Infrastructure to Relationship OS](#the-vision-from-infrastructure-to-relationship-operating-system)
@@ -1668,16 +1798,77 @@ LTV = $2,160 (10% annual expansion)
 
 # Financial Model
 
-## Revenue Projections (3 Years)
+## Revenue Projections (5 Years)
 
-| Metric | Month 6 | Year 1 | Year 2 | Year 3 |
-|--------|---------|--------|--------|--------|
-| **Customers** | 100 | 200 | 800 | 2,500 |
-| **ARPU** | $100 | $100 | $120 | $140 |
-| **MRR** | $10K | $20K | $96K | $350K |
-| **ARR** | $120K | $240K | $1.15M | $4.2M |
-| **MoM Growth** | 25% | 15% | 12% | 10% |
-| **Churn** | 5% | 4% | 3% | 2.5% |
+### Summary View
+
+| Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+|--------|--------|--------|--------|--------|--------|
+| **Customers (End of Year)** | 200 | 800 | 2,500 | 6,000 | 12,000 |
+| **ARPU** | $100 | $120 | $140 | $165 | $190 |
+| **MRR (End of Year)** | $20K | $96K | $350K | $990K | $2.28M |
+| **ARR** | $240K | $1.15M | $4.2M | $11.9M | $27.4M |
+| **YoY Revenue Growth** | — | 380% | 265% | 183% | 130% |
+| **Gross Margin** | 77% | 82% | 88% | 92% | 94% |
+| **Net Revenue Retention** | 95% | 105% | 115% | 125% | 130% |
+
+### Monthly Breakdown (Year 1)
+
+| Month | New Customers | Total Customers | MRR | MRR Growth |
+|-------|---------------|-----------------|-----|------------|
+| 1 | 10 | 10 | $1,000 | — |
+| 2 | 12 | 21 | $2,100 | 110% |
+| 3 | 15 | 35 | $3,500 | 67% |
+| 4 | 18 | 51 | $5,100 | 46% |
+| 5 | 20 | 68 | $6,800 | 33% |
+| 6 | 25 | 90 | $9,000 | 32% |
+| 7 | 28 | 113 | $11,300 | 26% |
+| 8 | 30 | 137 | $13,700 | 21% |
+| 9 | 32 | 161 | $16,100 | 18% |
+| 10 | 35 | 186 | $18,600 | 16% |
+| 11 | 38 | 212 | $21,200 | 14% |
+| 12 | 40 | 238 | $23,800 | 12% |
+
+**Notes:**
+- Assumes 4% monthly churn stabilizing by month 6
+- ARPU assumed constant at $100 for Year 1
+- Expansion revenue begins in Year 2
+
+### Revenue by Customer Segment
+
+| Segment | Year 1 % | Year 3 % | Year 5 % | ARPU | LTV |
+|---------|----------|----------|----------|------|-----|
+| **Starter ($49)** | 40% | 25% | 15% | $49 | $882 |
+| **Pro ($149)** | 40% | 40% | 35% | $149 | $2,682 |
+| **Business ($349)** | 18% | 30% | 40% | $349 | $6,282 |
+| **Enterprise** | 2% | 5% | 10% | $800+ | $14,400+ |
+
+### Scenario Analysis
+
+#### Base Case (Shown Above)
+- Assumptions: Moderate market adoption, SEO gains traction by month 6, paid acquisition efficient
+- Year 3 ARR: $4.2M
+- Probability: 50%
+
+#### Conservative Case
+| Metric | Year 1 | Year 3 | Year 5 |
+|--------|--------|--------|--------|
+| **Customers** | 120 | 1,200 | 5,000 |
+| **ARPU** | $90 | $120 | $150 |
+| **ARR** | $130K | $1.73M | $9M |
+
+- Assumptions: Slower acquisition, higher churn (5%), competitive pressure on pricing
+- Probability: 30%
+
+#### Optimistic Case
+| Metric | Year 1 | Year 3 | Year 5 |
+|--------|--------|--------|--------|
+| **Customers** | 350 | 5,000 | 25,000 |
+| **ARPU** | $115 | $170 | $220 |
+| **ARR** | $483K | $10.2M | $66M |
+
+- Assumptions: Viral adoption, AI SDR partnership/acquisition interest, category leadership
+- Probability: 20%
 
 ## Cost Structure
 
@@ -1717,6 +1908,118 @@ LTV = $2,160 (10% annual expansion)
 | Go-to-Market | 30% | $XXX | Content, paid ads, partnerships |
 | Infrastructure | 15% | $XXX | Scale to 10M leads |
 | Operations | 5% | $XXX | Legal, accounting, tools |
+
+## Cohort Analysis
+
+### Revenue Retention by Cohort
+
+```
+COHORT REVENUE RETENTION VISUALIZATION
+
+        Month 1   Month 3   Month 6   Month 12   Month 18   Month 24
+        ─────────────────────────────────────────────────────────────
+Cohort 1  100%     92%       85%       78%        85%        95%
+Cohort 2  100%     94%       88%       82%        90%        100%
+Cohort 3  100%     95%       90%       85%        95%        110%
+Cohort 4  100%     96%       92%       88%        100%       115%
+Cohort 5  100%     96%       93%       90%        105%       125%
+        ─────────────────────────────────────────────────────────────
+                    ↑         ↑         ↑          ↑          ↑
+               Initial   Churn    Stabilize  Expand   Net Growth
+               dropoff   slows                starts
+```
+
+**Key Insights:**
+- Initial churn highest in months 1-3 (product fit discovery)
+- Churn stabilizes after month 6 (users find value)
+- Expansion begins month 12+ (team seats, tier upgrades)
+- Net revenue retention >100% by month 18 (expansion > churn)
+
+### Customer Lifecycle Value Curve
+
+| Month | Cumulative Revenue | Cumulative Cost | Cumulative Profit | Payback Status |
+|-------|-------------------|-----------------|-------------------|----------------|
+| 1 | $100 | $180 (CAC) | -$80 | ❌ Not recovered |
+| 2 | $195 | $180 | $15 | ✅ Payback achieved |
+| 3 | $286 | $180 | $106 | Profitable |
+| 6 | $540 | $185 | $355 | Profitable |
+| 12 | $1,020 | $195 | $825 | Profitable |
+| 18 | $1,530 | $205 | $1,325 | Profitable |
+| 24 | $2,160 | $215 | $1,945 | LTV achieved |
+
+## Cash Flow Projections
+
+### Monthly Cash Flow (Year 1)
+
+| Month | Revenue | COGS | Gross Profit | OpEx | Net Cash Flow | Cumulative Cash |
+|-------|---------|------|--------------|------|---------------|-----------------|
+| 1 | $1,000 | $230 | $770 | $2,500 | -$1,730 | -$1,730 |
+| 2 | $2,100 | $483 | $1,617 | $2,500 | -$883 | -$2,613 |
+| 3 | $3,500 | $805 | $2,695 | $3,000 | -$305 | -$2,918 |
+| 4 | $5,100 | $1,173 | $3,927 | $3,000 | $927 | -$1,991 |
+| 5 | $6,800 | $1,564 | $5,236 | $3,500 | $1,736 | -$255 |
+| 6 | $9,000 | $2,070 | $6,930 | $4,000 | $2,930 | $2,675 |
+| 7 | $11,300 | $2,599 | $8,701 | $4,500 | $4,201 | $6,876 |
+| 8 | $13,700 | $3,151 | $10,549 | $5,000 | $5,549 | $12,425 |
+| 9 | $16,100 | $3,703 | $12,397 | $5,500 | $6,897 | $19,322 |
+| 10 | $18,600 | $4,278 | $14,322 | $6,000 | $8,322 | $27,644 |
+| 11 | $21,200 | $4,876 | $16,324 | $6,500 | $9,824 | $37,468 |
+| 12 | $23,800 | $5,474 | $18,326 | $7,000 | $11,326 | $48,794 |
+
+### Annual Cash Flow Summary
+
+| Year | Revenue | COGS | Gross Profit | OpEx | Net Income | Cash Position |
+|------|---------|------|--------------|------|------------|---------------|
+| 1 | $132K | $30K | $102K | $53K | $49K | $49K |
+| 2 | $720K | $130K | $590K | $576K | $14K | $63K |
+| 3 | $3.2M | $384K | $2.8M | $1.8M | $1.0M | $1.1M |
+| 4 | $9.5M | $855K | $8.6M | $5.7M | $2.9M | $4.0M |
+| 5 | $24M | $1.4M | $22.6M | $13.6M | $9.0M | $13M |
+
+## Exit Analysis
+
+### Comparable Transactions
+
+#### Recent Sales Intelligence Acquisitions
+
+| Target | Acquirer | Date | ARR | Valuation | Multiple |
+|--------|----------|------|-----|-----------|----------|
+| Clearbit | HubSpot | 2023 | ~$50M | $150M+ | 3x |
+| Lusha | Acquired | 2023 | ~$40M | $1.5B | 37x (at peak) |
+| LeadIQ | Private | 2022 | ~$20M | $200M | 10x |
+| ZoomInfo IPO | Public | 2020 | $476M | $8B | 17x |
+| Apollo (Series D) | Private | 2024 | $100M | $1.6B | 16x |
+
+#### AI SDR Wave Valuations (Likely Correction Coming)
+
+| Company | Stage | Est. ARR | Valuation | Multiple | Notes |
+|---------|-------|----------|-----------|----------|-------|
+| Clay | Series C | ~$30M | $500M+ | 17x | Enrichment focus |
+| 11x | Series A | ~$5M | $200M+ | 40x | AI SDR hype |
+| Artisan | Seed/A | ~$2M | $100M+ | 50x | AI SDR hype |
+| Instantly | Series A | $20M | $250M | 12.5x | Volume play |
+
+**Our Expected Multiples:**
+- Year 3 (pre-Series A quality): 10-15x ARR → $42-63M valuation
+- Year 5 (growth stage): 8-12x ARR → $220-330M valuation
+
+### Potential Acquirers
+
+| Acquirer Type | Examples | Strategic Rationale | Likelihood |
+|---------------|----------|---------------------|------------|
+| **AI SDR Companies** | Clay, 11x, Artisan | Need clean data to make AI work | High |
+| **CRM Vendors** | HubSpot, Salesforce, Pipedrive | Add data layer to existing CRM | Medium |
+| **Email Providers** | Resend, Postmark | Vertical integration for deliverability | Medium |
+| **Data Companies** | Apollo, ZoomInfo, Cognism | Acquire real-time scraping capability | Medium |
+| **Private Equity** | Vista, Thoma Bravo | Roll-up play in sales tech | Low (too early) |
+
+### Exit Timeline Scenarios
+
+| Scenario | Timeline | Trigger | Valuation Range |
+|----------|----------|---------|-----------------|
+| **Early Acquisition** | Year 2-3 | AI SDR company needs data | $15-40M |
+| **Growth Acquisition** | Year 4-5 | CRM vendor strategic play | $100-250M |
+| **IPO Path** | Year 7+ | Category leadership achieved | $500M+ |
 
 ---
 

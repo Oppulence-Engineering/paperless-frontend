@@ -62,6 +62,229 @@ This roadmap defines Paperless's evolution across three strategic phases, each b
 
 ---
 
+## Market Timing Analysis
+
+### Why 2026 Is the Inflection Point
+
+The convergence of multiple market forces creates a unique window of opportunity for Paperless to establish category leadership. This analysis examines the key timing indicators that validate our strategic approach.
+
+#### Macro-Level Market Shifts
+
+| Factor | 2023-2024 State | 2025-2026 Trajectory | Impact on Paperless |
+|--------|-----------------|---------------------|---------------------|
+| **Email Deliverability Regulation** | Google/Yahoo authentication optional | DMARC enforcement mandatory; SPF/DKIM required | Verification-first architecture becomes table stakes |
+| **AI SDR Saturation** | Early hype cycle; massive VC investment | Market correction; ROI scrutiny | Infrastructure wins over features |
+| **Data Decay Awareness** | Low; accepted as normal | High; driving tool decisions | Fresh data becomes key differentiator |
+| **SMB Tool Fatigue** | Growing frustration | Active consolidation seeking | Unified platforms win over point solutions |
+| **Privacy Regulation** | GDPR established; CCPA implemented | State-by-state US privacy laws expanding | Compliant-by-design platforms favored |
+
+#### Technology Trend Analysis
+
+**1. Email Authentication Evolution (Critical)**
+
+```
+TIMELINE: EMAIL AUTHENTICATION REQUIREMENTS
+
+2023 Q4: Google announces Feb 2024 requirements
+    │
+    ▼
+2024 Feb: SPF/DKIM required for bulk senders (5,000+/day)
+    │
+    ▼
+2024 Q3: Yahoo aligns with Google requirements
+    │
+    ▼
+2025 Q1: One-click unsubscribe enforcement begins
+    │
+    ▼
+2025 Q2: DMARC p=quarantine becomes default recommendation
+    │
+    ▼
+2026 Q1: DMARC p=reject expected for enterprise senders
+    │
+    ▼
+2026+: Predictive spam filtering using sender reputation scoring
+```
+
+**Impact Analysis:**
+- Bounce rates directly impact sender reputation
+- Unverified emails become liability, not just inefficiency
+- Verification shifts from "nice-to-have" to "must-have"
+- Our pre-verification architecture becomes competitive moat
+
+**2. AI in Sales Technology**
+
+| AI Capability | Current Maturity | 2026 Projection | Our Strategy |
+|---------------|-----------------|-----------------|--------------|
+| **Email Copy Generation** | Commodity (GPT-4, Claude) | Table stakes | Not our focus |
+| **Personalization at Scale** | Emerging | Standard feature | Enable via clean data |
+| **Lead Scoring** | Basic ML models | Sophisticated signals | Build on engagement data |
+| **Conversation Intelligence** | Enterprise only | SMB accessible | Phase 3 feature |
+| **Data Quality AI** | Nascent | Differentiator | Core competency |
+
+**3. Data Infrastructure Evolution**
+
+The sales data industry is undergoing fundamental restructuring:
+
+| Era | Time Period | Dominant Model | Example Players |
+|-----|-------------|----------------|-----------------|
+| **Static Databases** | 2010-2020 | Annual refresh; bulk licensing | ZoomInfo, D&B |
+| **Crowdsourced Data** | 2015-2022 | User contributions; LinkedIn scraping | Apollo, Lusha |
+| **API Aggregation** | 2020-2024 | Waterfall enrichment; multi-source | Clay, Clearbit |
+| **Real-Time Generation** | 2024+ | On-demand scraping; verification-first | **Paperless** |
+
+#### Regulatory Environment Deep-Dive
+
+**Email Regulations by Jurisdiction**
+
+| Regulation | Jurisdiction | Key Requirements | Paperless Compliance |
+|------------|--------------|------------------|---------------------|
+| **CAN-SPAM** | United States | Unsubscribe mechanism; physical address; no deceptive headers | Auto-inserted unsubscribe; header validation |
+| **CASL** | Canada | Express consent; sender identification; unsubscribe | Consent tracking; identity verification |
+| **GDPR Article 6** | European Union | Lawful basis for processing; legitimate interest | Documentation framework; data minimization |
+| **PECR** | United Kingdom | Prior consent for marketing | Consent management integration |
+| **California CPRA** | California | Right to opt-out; data access rights | Self-service data export; deletion workflows |
+
+**Scraping Legality Framework**
+
+Our scraping operations are designed with legal defensibility:
+
+| Principle | Implementation | Legal Basis |
+|-----------|----------------|-------------|
+| **Public Data Only** | Only scrape publicly accessible business information | First Amendment; HiQ v. LinkedIn precedent |
+| **No Login Required** | Never bypass authentication | CFAA compliance |
+| **Rate Limiting** | Respectful request patterns | No tortious interference |
+| **Robots.txt Respect** | Honor opt-out signals | Industry standard; good faith |
+| **Opt-Out Mechanism** | Businesses can request removal | Self-regulatory compliance |
+| **Business Data Focus** | B2B only; no consumer PII | Reduced privacy exposure |
+
+#### Customer Acquisition Funnel Analysis by Phase
+
+**Phase 1 Funnel (Data Infrastructure)**
+
+```
+PHASE 1 ACQUISITION FUNNEL
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ AWARENESS                                                                        │
+│ ├── SEO: "Apollo alternative", "email verification tool", "Google Maps scraper" │
+│ ├── Content: Blog posts, YouTube tutorials, comparison articles                 │
+│ ├── Community: Indie Hackers, Reddit, Twitter/X                                 │
+│ └── Referrals: Design partner network                                           │
+│                                                                                  │
+│ Target: 10,000 unique visitors/month by Q2 2026                                 │
+│ Cost: $0.50-2.00 per visitor                                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ INTEREST (Signup)                                                                │
+│ ├── Free tier: 100 leads/month, database only                                  │
+│ ├── Interactive demo: Try before signup                                         │
+│ └── Case studies: ROI proof from early adopters                                 │
+│                                                                                  │
+│ Target: 15% visitor-to-signup conversion                                        │
+│ Expected: 1,500 signups/month by Q2 2026                                        │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ CONSIDERATION (Activation)                                                       │
+│ ├── First scrape: <5 minutes to first leads                                    │
+│ ├── Verification demo: See quality difference immediately                       │
+│ └── Workflow template: Pre-built sequences for common use cases                 │
+│                                                                                  │
+│ Target: 40% signup-to-activation (first successful scrape)                      │
+│ Expected: 600 activated users/month                                             │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ CONVERSION (Trial → Paid)                                                        │
+│ ├── 14-day trial: Full Pro features                                            │
+│ ├── Usage nudges: "You've used 80% of trial credits"                           │
+│ └── Success check-in: Day 7 automated email                                     │
+│                                                                                  │
+│ Target: 25% activation-to-paid conversion                                       │
+│ Expected: 150 new paying customers/month by Q2 2026                             │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│ RETENTION (Month 2+)                                                             │
+│ ├── Onboarding sequence: 7-day drip campaign                                   │
+│ ├── Feature discovery: In-app guidance                                          │
+│ └── Customer success: Proactive outreach at risk signals                        │
+│                                                                                  │
+│ Target: 96% Month 1 retention; 92% Month 3 retention                            │
+│ Expected: <4% monthly churn by end of Phase 1                                   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+**Acquisition Channel Mix by Phase**
+
+| Channel | Phase 1 (%) | Phase 2 (%) | Phase 3 (%) | Rationale |
+|---------|-------------|-------------|-------------|-----------|
+| **Organic Search (SEO)** | 40% | 35% | 30% | Long-term; compounds over time |
+| **Content Marketing** | 25% | 20% | 15% | Thought leadership; education |
+| **Product-Led Growth** | 15% | 25% | 30% | Free tier; word-of-mouth |
+| **Paid Ads** | 10% | 15% | 20% | Scale after unit economics proven |
+| **Partnerships/Affiliates** | 10% | 5% | 5% | Agency network; integrators |
+
+---
+
+## Competitive Landscape Evolution Timeline
+
+### 2024-2027 Market Dynamics
+
+```
+COMPETITIVE LANDSCAPE EVOLUTION
+
+2024 ─────────────────────────────────────────────────────────────────────────────
+     │
+     ├── Clay raises $500M+ (API aggregation model)
+     ├── 11x raises $50M (AI SDR hype peak)
+     ├── Instantly/Smartlead gain traction (cheap volume)
+     ├── Apollo reaches $100M ARR (incumbent scale)
+     │
+     ▼
+2025 Q1-Q2 ───────────────────────────────────────────────────────────────────────
+     │
+     ├── AI SDR backlash begins (domain damage reports)
+     ├── Google/Yahoo enforcement causes bounce spikes
+     ├── Apollo adds verification (reactive, add-on pricing)
+     ├── ** Paperless launches Phase 1 **
+     │
+     ▼
+2025 Q3-Q4 ───────────────────────────────────────────────────────────────────────
+     │
+     ├── AI SDR consolidation (M&A activity)
+     ├── Verification becomes table stakes
+     ├── SMB migration from point solutions accelerates
+     ├── Paperless gains traction in agency segment
+     │
+     ▼
+2026 Q1-Q2 ───────────────────────────────────────────────────────────────────────
+     │
+     ├── First AI SDR failures become public
+     ├── Data freshness becomes buying criterion
+     ├── ** Paperless Phase 1 mature; Phase 2 launches **
+     │
+     ▼
+2026 Q3-Q4 ───────────────────────────────────────────────────────────────────────
+     │
+     ├── Inbox becomes new battleground
+     ├── CRM-lite features emerge across tools
+     ├── ** Paperless Phase 2 complete; Phase 3 foundation **
+     │
+     ▼
+2027 ─────────────────────────────────────────────────────────────────────────────
+     │
+     ├── Market consolidation (3-5 dominant players)
+     ├── Relationship OS category established
+     ├── ** Paperless positioned as category leader **
+```
+
+### Competitor Response Scenarios
+
+| Competitor | Likely Response | Our Counter-Strategy |
+|------------|-----------------|---------------------|
+| **Apollo** | Add verification as paid add-on; improve workflows | Verification included; better UX; flywheel moat |
+| **Clay** | Expand to outreach; add verification API | Full pipeline vs. enrichment-only; SMB focus |
+| **11x/Artisan** | Partner with data providers; add verification | We ARE the data provider they need |
+| **Instantly** | Add data sourcing; improve deliverability | Quality over quantity; reputation protection |
+| **HubSpot** | Improve Sales Hub data quality | SMB agility; no enterprise complexity |
+
+---
+
 # User Personas & Segments
 
 ## Primary Personas
@@ -100,6 +323,160 @@ This roadmap defines Paperless's evolution across three strategic phases, each b
 
 **Willingness to Pay:** $249-499/mo for a solution that consolidates their stack
 
+#### Alex's User Journey Map
+
+**Day 1: Discovery & Signup**
+```
+9:00 AM  - Alex sees "Apollo alternative" article while researching tools
+         - Clicks through, reads about verification-first approach
+         - Resonates with burned domain story (happened to them)
+         
+9:15 AM  - Signs up for 14-day Pro trial
+         - Creates workspace "Apex Marketing Agency"
+         - Completes quick onboarding survey (agency, 10 clients, 12 employees)
+         
+9:25 AM  - First scrape: "dentists in Miami, FL"
+         - Watches real-time progress (novel experience)
+         - 67 leads in 2:34 minutes
+         
+9:28 AM  - Examines lead list
+         - Notices: All emails have verification badges
+         - No ❌ Invalid emails visible (filtered by default)
+         - "This is already better than Apollo"
+         
+9:35 AM  - Exports 10 leads as test
+         - Sends through existing Lemlist setup
+         - Zero bounces
+         
+9:40 AM  - Explores workflow builder
+         - Sees pre-built templates
+         - Bookmarks for later
+```
+
+**Week 1: First Campaign**
+```
+Day 2    - Builds first workflow using template
+         - "New Lead Introduction" (3-step sequence)
+         - Customizes templates with agency branding
+         
+Day 3    - Connects existing Resend account
+         - Verifies sender domain (SPF/DKIM guidance helps)
+         - Tests workflow with personal email
+         
+Day 4    - Activates workflow for Miami Dentists list
+         - First 50 leads enter sequence
+         - Real-time tracking shows sends/opens
+         
+Day 5-7  - Monitors engagement dashboard
+         - 23% open rate (above industry average)
+         - 3 replies by end of week
+         - Zero bounces
+         - "I could get used to this"
+```
+
+**Month 1: Multi-Client Adoption**
+```
+Week 2   - Onboards second client (SaaS company)
+         - Creates separate list and workflow
+         - Different template, same process
+         - Both campaigns visible in unified dashboard
+         
+Week 3   - Third client: Local contractors
+         - Uses Google Maps scraping (perfect fit)
+         - Realizes: "This is my competitive advantage"
+         
+Week 4   - Reviews trial usage
+         - 3 active campaigns
+         - 0 bounced emails (vs 12% historical)
+         - Clients impressed with reporting
+         - Converts to Business tier ($349/mo)
+         - "Already saving $400/month on other tools"
+```
+
+**Month 3: Full Adoption**
+```
+         - 8 clients running through Paperless
+         - Cancelled Apollo ($299), NeverBounce ($79), Lemlist ($99)
+         - Net savings: $128/month
+         - Time savings: 10+ hours/week
+         - Zero burned domains in 3 months
+         
+         - Considers Enterprise for API access
+         - Refers 2 other agency owners
+```
+
+#### Alex's Detailed Scenarios
+
+**Scenario 1: New Client Onboarding**
+```
+CONTEXT: Alex just signed a new client—a roofing company targeting homeowners 
+         in Houston who recently bought older homes.
+
+BEFORE PAPERLESS:
+├── 2 hours: Manual Google Maps searching, copy-paste to spreadsheet
+├── 30 min: Upload to Hunter for email finding
+├── 30 min: Download, re-upload to NeverBounce
+├── 45 min: Wait for verification
+├── 20 min: Download, filter, re-upload to Lemlist
+├── 30 min: Build sequence
+└── Total: 5+ hours
+
+WITH PAPERLESS:
+├── 5 min: Search "roofing contractors" + "real estate agents" in Houston
+├── 3 min: 120 leads scraped and verified
+├── 10 min: Build workflow from template
+├── 2 min: Activate with first 50 leads
+└── Total: 20 minutes
+
+RESULT: 15x time savings; client campaign live same day as signing
+```
+
+**Scenario 2: Domain Reputation Protection**
+```
+CONTEXT: Alex's team accidentally sent to an old list (happens when 
+         new team member doesn't know the process).
+
+BEFORE PAPERLESS:
+├── Sent 500 emails from client's domain
+├── 127 bounced (25% bounce rate)
+├── Domain reputation tanked
+├── 6 weeks to recover deliverability
+├── Client nearly churned
+└── Impact: $4,000/month revenue at risk
+
+WITH PAPERLESS:
+├── All emails pre-verified before visible in list
+├── Workflow refuses to send to ❌ Invalid
+├── Warning prompt for ⚠️ Risky (catch-all) emails
+├── Even "old" lists are re-verified on access
+└── Impact: Scenario cannot happen
+
+LESSON: Verification-first architecture prevents category of failure
+```
+
+**Scenario 3: Client Reporting**
+```
+CONTEXT: Alex needs to present monthly results to a demanding client.
+
+BEFORE PAPERLESS:
+├── Export data from Lemlist
+├── Export data from Apollo
+├── Export data from Hunter
+├── Combine in Google Sheets
+├── Create manual pivot tables
+├── Build slides in Google Slides
+└── Time: 3+ hours per client, monthly
+
+WITH PAPERLESS:
+├── Navigate to Analytics → Client filter
+├── View unified dashboard with all metrics
+├── One-click export to PDF report
+├── White-label ready (Business tier)
+└── Time: 15 minutes per client
+
+RESULT: 12 clients × 2.75 hours saved = 33 hours/month recovered
+```
+
 ---
 
 ### Persona 2: SMB Sales Rep Sarah
@@ -136,6 +513,140 @@ This roadmap defines Paperless's evolution across three strategic phases, each b
 
 **Willingness to Pay:** $49-149/mo (often expensed)
 
+#### Sarah's User Journey Map
+
+**Day 1: Team Onboarding**
+```
+10:00 AM - Manager sends Paperless workspace invite
+         - "We're consolidating our stack. Check this out."
+         
+10:05 AM - Sarah accepts invite, joins team workspace
+         - Sees existing team leads and workflows
+         - Quick orientation (5 min in-app tutorial)
+         
+10:15 AM - Explores assigned territory (Southwest region)
+         - Filters leads by location: Arizona, Nevada, New Mexico
+         - Sees 450 leads already scraped by team
+         
+10:25 AM - Clones team workflow "Enterprise Intro Sequence"
+         - Customizes email templates with her voice
+         - Adds personal calendar link for meetings
+         
+10:40 AM - Activates workflow for 50 leads
+         - First campaign live in 35 minutes
+         - "That usually takes me a full afternoon"
+```
+
+**Week 1: Building Habits**
+```
+Day 2    - Morning check: Dashboard shows 12 opens, 2 clicks
+         - Identifies hot leads (multiple engagements)
+         - Prioritizes follow-up calls based on data
+         
+Day 3    - First reply comes in
+         - Full context visible: what was sent, when opened
+         - Replies with confidence (no digging through sent folder)
+         
+Day 4-5  - Adds 30 new leads from database search
+         - Filters: "VP Sales" + "SaaS" + "50-200 employees"
+         - All pre-verified, ready to sequence
+         
+Day 6-7  - Reviews week performance
+         - 3 meetings booked from outreach
+         - Zero bounces (vs typical 8-10 per week)
+         - Manager impressed with clean metrics
+```
+
+**Month 1: Power User Emergence**
+```
+Week 2   - Creates custom saved search for ICP
+         - "Director+" + "Marketing" + "B2B" + "Series A-C"
+         - Becomes go-to for team lead sourcing
+         
+Week 3   - Starts using tags for lead organization
+         - "Hot", "Call Scheduled", "Nurture", "Not Now"
+         - Pipeline visibility improves dramatically
+         
+Week 4   - Shares workflow with new team member
+         - Onboards colleague in 20 minutes
+         - "This is so much easier than our old stack"
+         
+         - Quota: 150% of target
+         - Attribution: 60% from Paperless outreach
+```
+
+#### Sarah's Detailed Scenarios
+
+**Scenario 1: Territory Prospecting**
+```
+CONTEXT: Sarah is assigned a new territory (Colorado) and needs to 
+         build pipeline from scratch.
+
+BEFORE PAPERLESS:
+├── 4 hours: Research companies in territory via LinkedIn
+├── 2 hours: Find decision-makers, copy emails to spreadsheet
+├── 1 hour: Verify emails through free Hunter credits
+├── 1 hour: Upload to Lemlist, build sequence
+└── Total: 8+ hours to get first outreach sent
+
+WITH PAPERLESS:
+├── 10 min: Search database with filters
+│           └── "VP/Director Sales" + "Colorado" + "50-200 employees"
+├── Immediate: 85 verified leads ready
+├── 15 min: Customize workflow template
+├── 5 min: Activate for 50 leads
+└── Total: 30 minutes to first outreach
+
+RESULT: 16x time savings; 7+ hours recovered for actual selling
+```
+
+**Scenario 2: Hot Lead Follow-Up**
+```
+CONTEXT: A lead opened Sarah's email 4 times in 2 hours but hasn't 
+         replied. This is a buying signal.
+
+BEFORE PAPERLESS:
+├── Email notification goes to Gmail (if tracking even works)
+├── Sarah doesn't see it until checking email later
+├── Has to look up who this person is
+├── Moment passes; lead goes cold
+└── Opportunity lost
+
+WITH PAPERLESS:
+├── Dashboard surfaces "High Engagement" leads automatically
+├── Lead shows: 4 opens, 2 clicks on pricing page
+├── Full context: Company info, emails sent, engagement timeline
+├── Sarah calls within 30 minutes of engagement
+└── Meeting booked while interest is hot
+
+RESULT: Real-time prioritization converts interest to meetings
+```
+
+**Scenario 3: Team Handoff**
+```
+CONTEXT: Sarah is going on vacation for 2 weeks. She has 15 active 
+         conversations that need continued engagement.
+
+BEFORE PAPERLESS:
+├── Create spreadsheet of active conversations
+├── Forward email threads to colleague
+├── Verbal briefing on each lead (30 min)
+├── Hope colleague checks spreadsheet
+├── Return to find dropped balls
+└── 3 opportunities went cold
+
+WITH PAPERLESS:
+├── Bulk assign 15 conversations to colleague
+├── All context transfers automatically
+│   └── Engagement history, notes, company info, thread history
+├── Colleague sees "Assigned to Me" queue
+├── Clear priority indicators
+├── Sarah returns to updated notes and continued conversations
+└── Zero dropped opportunities
+
+RESULT: Seamless handoffs; no context loss during transitions
+```
+
 ---
 
 ### Persona 3: Startup Founder Finn
@@ -170,6 +681,122 @@ This roadmap defines Paperless's evolution across three strategic phases, each b
 
 **Willingness to Pay:** $49-99/mo initially, upgrades as validation happens
 
+#### Finn's User Journey Map
+
+**Day 1: Hypothesis Testing**
+```
+2:00 PM  - Finn has a hypothesis: "Enterprise CFOs might need our expense tool"
+         - Has 2 hours before investor call prep
+         
+2:05 PM  - Signs up for Paperless Starter ($49/mo)
+         - Quick onboarding: "Founder" + "Testing market" + "<100 emails/month"
+         
+2:15 PM  - Database search: "CFO" + "Series B-C" + "100-500 employees"
+         - 127 verified leads returned instantly
+         - "Wait, that's it? No export-import dance?"
+         
+2:25 PM  - Selects 50 leads (good variety of industries)
+         - Uses template: "Founder Cold Intro"
+         - Personalizes with {{company}} and {{first_name}}
+         
+2:40 PM  - Workflow activated
+         - Emails sending over next 2 hours
+         - Back to investor prep
+         
+5:00 PM  - Quick check: 47 sent, 8 opened (17% open rate)
+         - No bounces (surprising based on past experience)
+         - "Interesting. Let's see what happens."
+```
+
+**Week 1: Signal Collection**
+```
+Day 2    - 15 opens, 3 clicks on product page
+         - 1 reply: "Interesting. Not right now, but keep me posted."
+         - Tagged as "Future Nurture"
+         
+Day 3    - Breakthrough reply: "This is exactly what we've been looking for. Demo?"
+         - Finn books meeting same day
+         - Tags lead as "Hot"
+         
+Day 4-5  - 2 more positive replies
+         - 1 negative: "We use Expensify"
+         - Tagged for competitive analysis
+         
+Day 6-7  - Weekly analysis:
+         - Open rate: 23% (above average)
+         - Reply rate: 8% (very good for cold)
+         - 3 demo requests from 50 emails
+         - Hypothesis: Validated. CFOs are interested.
+```
+
+**Month 1: Iteration and Expansion**
+```
+Week 2   - Tests second segment: "VP Finance" at same company sizes
+         - Results: Lower open rate (18%), fewer replies (4%)
+         - Conclusion: CFO targeting is correct
+         
+Week 3   - Tests messaging variants
+         - Version A: Pain-focused ("expense reports are broken")
+         - Version B: Outcome-focused ("close books 3 days faster")
+         - Result: Version B wins (12% reply vs 6%)
+         
+Week 4   - Has enough signal to:
+         - Define ICP: CFO, Series B-C, 100-500 employees
+         - Create pitch deck with customer language
+         - Start hiring process for first sales rep
+         
+         - Upgrades to Pro ($149) for more volume
+         - "Best $49 I've spent. Validated in 3 weeks."
+```
+
+#### Finn's Detailed Scenarios
+
+**Scenario 1: Rapid Market Validation**
+```
+CONTEXT: Finn needs to test 3 different customer segments to decide 
+         which to focus the startup on. Has 2 weeks and no budget.
+
+BEFORE PAPERLESS:
+├── Segment 1: 3 days to manually find/verify 50 contacts
+├── Send via personal Gmail (deliverability unknown)
+├── Segment 2: Another 3 days
+├── Segment 3: Another 3 days
+├── Total: 9+ days of work, inconclusive data
+└── Result: Decision delayed; runway consumed
+
+WITH PAPERLESS:
+├── Day 1: All 3 segments searched, 150 leads ready
+├── Day 1: 3 separate workflows created (1 hour total)
+├── Days 2-14: Collect engagement data
+├── Day 14: Clear comparison across segments
+└── Result: Decision made; 8 days and $147 saved
+
+QUANTIFIED VALUE: 8 engineering days × $800/day = $6,400 opportunity cost avoided
+```
+
+**Scenario 2: Founder-to-Sales Handoff**
+```
+CONTEXT: Finn is hiring first sales rep. Needs to hand off 
+         everything learned about outreach.
+
+BEFORE PAPERLESS:
+├── Spreadsheet of "what worked"
+├── Forwarded email threads
+├── Verbal knowledge transfer (hours of meetings)
+├── New rep rebuilds from scratch anyway
+└── 2+ weeks to productivity
+
+WITH PAPERLESS:
+├── New rep joins workspace
+├── Sees all historical workflows, results, engagement data
+├── Clones "best performing" workflow
+├── Accesses lead lists with engagement history
+├── Full context on every conversation
+└── 2 days to productivity
+
+RESULT: 10x faster onboarding; institutional knowledge preserved
+```
+
 ---
 
 ### Persona 4: Recruiting Firm Rachel
@@ -203,9 +830,285 @@ This roadmap defines Paperless's evolution across three strategic phases, each b
 
 **Willingness to Pay:** $149-349/mo
 
+#### Rachel's User Journey Map
+
+**Day 1: Supplementing LinkedIn**
+```
+8:00 AM  - Rachel hits weekly InMail limit (150 messages)
+         - Still has 200 candidates to reach
+         - Searches "LinkedIn alternative recruiting outreach"
+         
+8:30 AM  - Finds Paperless; "email outreach for recruiters"
+         - Signs up for Pro trial ($149/mo)
+         - Onboarding: "Recruiting" + "Candidate sourcing" + "Tech industry"
+         
+9:00 AM  - Database search: Engineers in Austin area
+         - "Software Engineer" + "Austin, TX" + "3-7 years experience"
+         - 340 verified contacts returned
+         - "These are the people I can't reach on LinkedIn"
+         
+9:30 AM  - Creates workflow: "Candidate Introduction"
+         - Personalized template mentioning specific skills
+         - Softer approach than sales (relationship-focused)
+         
+10:00 AM - Activates for first 100 candidates
+          - Emails go out over 2 hours
+          - Back to LinkedIn for InMail recipients
+```
+
+**Week 1: Dual-Channel Recruiting**
+```
+Day 2    - 18 opens, 5 clicks to job description
+         - 2 replies: "Tell me more about the role"
+         - Responds with full details
+         
+Day 3    - Breakthrough: Passive candidate who never checks LinkedIn
+         - "Thanks for emailing directly. I'm interested."
+         - Books screening call
+         
+Day 4-5  - Reaches hiring managers at target companies
+         - Separate workflow: "Business Development"
+         - Opens relationship for future placements
+         
+Day 6-7  - Reviews results:
+         - 5 candidate conversations started
+         - 2 hiring manager relationships opened
+         - All from email (wouldn't have reached via LinkedIn)
+         - "This is the channel I was missing"
+```
+
+**Month 1: Full Integration**
+```
+Week 2   - Sets up relationship tracking tags
+         - "Active Candidate", "Passive", "Hiring Manager", "Past Placement"
+         - Tracks long-term relationship lifecycle
+         
+Week 3   - Re-engages past candidates (placed 2 years ago)
+         - Many have moved companies; now decision-makers
+         - "Want to hire for your new team?"
+         
+Week 4   - Quantifies impact:
+         - 3 placements sourced via Paperless
+         - Average placement fee: $15,000
+         - ROI: $45,000 / $149 = 302x return
+         
+         - Upgrades to Business for API (ATS integration)
+```
+
+#### Rachel's Detailed Scenarios
+
+**Scenario 1: Passive Candidate Sourcing**
+```
+CONTEXT: Rachel needs senior engineers for a hard-to-fill role. 
+         Best candidates don't actively job search.
+
+LINKEDIN ONLY:
+├── 150 InMails/month limit
+├── 30% never log in (miss message entirely)
+├── Competing with 50+ other recruiters
+├── Response rate: 5-8%
+└── Senior engineers: Maybe 10 responses/month
+
+WITH PAPERLESS + LINKEDIN:
+├── LinkedIn: Best for active job seekers
+├── Paperless: Catches passive candidates
+├── Direct inbox (everyone checks email)
+├── Less recruiter competition in email
+├── Response rate: 12-15%
+└── Senior engineers: 25+ responses/month
+
+RESULT: 2.5x more senior candidate conversations
+```
+
+**Scenario 2: Long-Term Relationship Management**
+```
+CONTEXT: Rachel placed a software engineer 3 years ago. 
+         That person is now VP Engineering at growing startup.
+
+BEFORE PAPERLESS:
+├── Contact info in old spreadsheet somewhere
+├── Email probably outdated
+├── No record of past conversations
+├── Awkward cold re-introduction
+└── Missed opportunity
+
+WITH PAPERLESS:
+├── Contact in system with full history
+├── Email verified and current
+├── Timeline shows: placement 2018, check-in 2020
+├── Warm re-engagement: "Congrats on VP role! Hiring?"
+├── Full context preserved over years
+└── Relationship maintained → 2 placements for their team
+
+RESULT: Past placements become future clients (compounding relationships)
+```
+
 ---
 
 ## Customer Segments
+
+| Segment | % of Users | Primary Persona | Key Features | Tier |
+|---------|------------|-----------------|--------------|------|
+| **Agencies** | 40% | Alex | Multi-campaign, client management, white-label | Business/Enterprise |
+| **SMB Sales** | 35% | Sarah | Simple workflow, team features, CRM sync | Pro |
+| **Founders** | 15% | Finn | Quick start, simplicity, control | Starter |
+| **Recruiting** | 10% | Rachel | Relationship tracking, volume | Pro/Business |
+
+### Segment Deep-Dive
+
+**Agencies (40% of Revenue)**
+```
+CHARACTERISTICS:
+├── Company size: 5-50 employees
+├── Clients per agency: 5-25
+├── Email volume: 10,000-100,000/month
+├── Key decision-maker: Agency owner or VP Operations
+├── Sales cycle: 1-2 weeks (understand value immediately)
+├── Expansion path: Additional team seats + API access
+
+VALUE DRIVERS:
+├── 1. Multi-client management (separate workspaces)
+├── 2. Deliverability protection (reputation = business)
+├── 3. White-label reporting (client-facing)
+├── 4. Time savings (operational efficiency)
+└── 5. Competitive differentiation (fresh data)
+
+TYPICAL DEAL:
+├── Initial: Business tier ($349/mo)
+├── 6-month: Add 2 seats + upgrade to Enterprise
+├── 12-month: $600-1,000/mo with usage overages
+└── LTV: $8,000-15,000
+```
+
+**SMB Sales Teams (35% of Revenue)**
+```
+CHARACTERISTICS:
+├── Company size: 10-200 employees
+├── Sales team size: 2-15 people
+├── Email volume: 1,000-20,000/month
+├── Key decision-maker: Sales Manager or VP Sales
+├── Sales cycle: 2-4 weeks (need manager approval)
+├── Expansion path: Team seats + usage tiers
+
+VALUE DRIVERS:
+├── 1. Team collaboration (assignments, handoffs)
+├── 2. CRM integration (Salesforce, HubSpot)
+├── 3. Activity visibility (manager dashboards)
+├── 4. Fresh data for territory prospecting
+└── 5. Unified workflow (reduce tool count)
+
+TYPICAL DEAL:
+├── Initial: Pro tier ($149/mo) for 2-3 users
+├── 6-month: Expand to 5+ users
+├── 12-month: $500-750/mo with team growth
+└── LTV: $4,000-8,000
+```
+
+---
+
+## Anti-Personas (Who We're NOT Building For)
+
+Understanding who we **won't** serve is as important as knowing our target customers. These anti-personas help maintain focus and prevent scope creep.
+
+### Anti-Persona 1: Enterprise Sales Ops Lead "Ellen"
+
+**Profile:**
+- Fortune 500 company
+- 200+ person sales team
+- $50K+ annual budget for sales tools
+- Requires SOC 2 Type II, HIPAA, extensive compliance
+
+**Why NOT a fit:**
+| Requirement | Ellen Needs | We Provide (2026) |
+|-------------|-------------|-------------------|
+| Compliance | SOC 2 Type II, HIPAA | SOC 2 Type II planned (2027) |
+| SLA | 99.99% uptime, 24/7 support | 99.9% uptime, business hours |
+| Customization | Extensive API, custom fields | Standard API, limited customization |
+| Integration | Deep Salesforce integration | Basic CRM sync |
+| Implementation | Dedicated CSM, professional services | Self-serve + docs |
+
+**What Ellen should use:** ZoomInfo, 6sense, Outreach, Gong
+
+**Future consideration:** Enterprise segment becomes viable in Phase 3+ with dedicated Enterprise tier
+
+---
+
+### Anti-Persona 2: Spam Sender "Steve"
+
+**Profile:**
+- Buys bulk email lists
+- Sends 100K+ unsolicited emails/month
+- No regard for consent or reputation
+- Looking for cheapest possible solution
+
+**Why NOT a fit:**
+| Requirement | Steve Wants | We Provide |
+|-------------|-------------|------------|
+| Volume | Unlimited sending | Rate-limited, throttled |
+| Verification | Skip it (costs money) | Mandatory, built-in |
+| Cost | <$0.001/email | $0.01-0.05/lead |
+| Compliance | Don't care | CAN-SPAM, GDPR enforced |
+| Reputation | Burn and churn domains | Protect sender reputation |
+
+**Technical blockers we implement:**
+- Mandatory verification (can't send to unverified)
+- Rate limiting (max emails/hour/day)
+- Bounce monitoring (auto-pause at 5% bounce rate)
+- Spam complaint tracking (auto-pause at threshold)
+- List quality requirements (no purchased lists)
+
+**What Steve should use:** Nothing. This behavior damages the email ecosystem.
+
+---
+
+### Anti-Persona 3: One-Time List Buyer "Olivia"
+
+**Profile:**
+- Needs leads for one-off campaign
+- No recurring need
+- Looking to buy a list and disappear
+- Price-sensitive, no relationship intent
+
+**Why NOT a fit:**
+| Requirement | Olivia Wants | We Provide |
+|-------------|-------------|------------|
+| Pricing model | One-time purchase | Recurring subscription |
+| Data export | Unlimited export | Export limits by tier |
+| Relationship | Transactional | Ongoing partnership |
+| Support | None needed | Included in subscription |
+| Freshness | Doesn't matter | Core value prop |
+
+**Why we avoid this segment:**
+- Low LTV (single transaction vs. recurring)
+- High CAC relative to value
+- Data resale risk (they re-sell our leads)
+- No flywheel contribution
+- Brand association risk
+
+**What Olivia should use:** Fiverr scrapers, data brokers
+
+---
+
+### Anti-Persona 4: Phone-Only Sales "Phil"
+
+**Profile:**
+- Inside sales team focused on cold calling
+- Email is afterthought (5% of outreach)
+- Needs dialer, call recording, voicemail drop
+- Measures success in dials, not emails
+
+**Why NOT a fit:**
+| Requirement | Phil Needs | We Provide |
+|-------------|-------------|------------|
+| Dialer | Power dialer, auto-dial | No dialer |
+| Call recording | Conversation intelligence | Not yet |
+| Voicemail | Pre-recorded drops | No |
+| Phone verification | Carrier validation | No |
+| Primary channel | Phone | Email |
+
+**What Phil should use:** Orum, VanillaSoft, Salesloft, Outreach
+
+**Future consideration:** Phone channel may be explored in 2027+ if demand emerges
 
 | Segment | % of Users | Primary Persona | Key Features | Tier |
 |---------|------------|-----------------|--------------|------|
@@ -568,6 +1471,359 @@ interface ScrapingJobResult {
     retriable: boolean;
   };
 }
+```
+
+### Technical Deep-Dive
+
+#### Database Schema
+
+```sql
+-- Scraping Jobs Table
+CREATE TABLE scraping_jobs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    workspace_id UUID NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id),
+    
+    -- Job Parameters
+    query VARCHAR(255) NOT NULL,
+    location_display VARCHAR(255) NOT NULL,
+    location_lat DECIMAL(10, 8) NOT NULL,
+    location_lng DECIMAL(11, 8) NOT NULL,
+    radius_miles INTEGER NOT NULL DEFAULT 25,
+    depth INTEGER NOT NULL CHECK (depth >= 1 AND depth <= 5),
+    
+    -- Job State
+    status VARCHAR(20) NOT NULL DEFAULT 'queued'
+        CHECK (status IN ('queued', 'running', 'completed', 'failed', 'cancelled', 'partial')),
+    
+    -- Progress Tracking
+    pages_total INTEGER NOT NULL,
+    pages_completed INTEGER NOT NULL DEFAULT 0,
+    leads_found INTEGER NOT NULL DEFAULT 0,
+    leads_new INTEGER NOT NULL DEFAULT 0,
+    leads_updated INTEGER NOT NULL DEFAULT 0,
+    leads_duplicate INTEGER NOT NULL DEFAULT 0,
+    
+    -- Resource Usage
+    credits_estimated INTEGER NOT NULL,
+    credits_used INTEGER NOT NULL DEFAULT 0,
+    
+    -- Timing
+    started_at TIMESTAMPTZ,
+    completed_at TIMESTAMPTZ,
+    elapsed_seconds INTEGER,
+    
+    -- Error Handling
+    error_code VARCHAR(50),
+    error_message TEXT,
+    retry_count INTEGER NOT NULL DEFAULT 0,
+    
+    -- Metadata
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    
+    -- Indexes
+    CONSTRAINT fk_workspace FOREIGN KEY (workspace_id) REFERENCES workspaces(id)
+);
+
+CREATE INDEX idx_scraping_jobs_workspace ON scraping_jobs(workspace_id);
+CREATE INDEX idx_scraping_jobs_status ON scraping_jobs(status);
+CREATE INDEX idx_scraping_jobs_created ON scraping_jobs(created_at DESC);
+CREATE INDEX idx_scraping_jobs_user_status ON scraping_jobs(user_id, status);
+
+-- Scraping Job Pages (individual pages within a job)
+CREATE TABLE scraping_job_pages (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    job_id UUID NOT NULL REFERENCES scraping_jobs(id) ON DELETE CASCADE,
+    page_number INTEGER NOT NULL,
+    
+    -- Page State
+    status VARCHAR(20) NOT NULL DEFAULT 'pending'
+        CHECK (status IN ('pending', 'running', 'completed', 'failed')),
+    
+    -- Results
+    leads_found INTEGER NOT NULL DEFAULT 0,
+    
+    -- Timing
+    started_at TIMESTAMPTZ,
+    completed_at TIMESTAMPTZ,
+    
+    -- Error Handling
+    error_message TEXT,
+    retry_count INTEGER NOT NULL DEFAULT 0,
+    
+    -- Metadata
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    
+    UNIQUE(job_id, page_number)
+);
+
+CREATE INDEX idx_job_pages_job ON scraping_job_pages(job_id);
+CREATE INDEX idx_job_pages_status ON scraping_job_pages(status);
+```
+
+#### System Architecture
+
+```
+SCRAPING SYSTEM ARCHITECTURE
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              CLIENT (Next.js)                                    │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   Job Creation Form ──────► POST /api/scraping/jobs                             │
+│                                      │                                           │
+│   Progress View ◄──────────────────WebSocket (/api/scraping/jobs/{id}/ws)       │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              API LAYER (Go)                                      │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ScrapingController                                                             │
+│   ├── CreateJob() ────────► Validate ──► Check Credits ──► Enqueue              │
+│   ├── GetJob()                                                                   │
+│   ├── CancelJob()                                                                │
+│   └── WebSocketHandler() ◄─────────────── Redis PubSub                          │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              JOB QUEUE (Redis + Asynq)                           │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   Queue: scraping:jobs                                                          │
+│   ├── Priority: High (paid users), Medium (trial), Low (free)                  │
+│   ├── Max concurrent per user: 3                                                │
+│   ├── Retry policy: 3 attempts, exponential backoff                            │
+│   └── Dead letter queue: scraping:jobs:failed                                   │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              WORKER POOL (Kubernetes Pods)                       │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ScrapingWorker (3-10 pods, auto-scaling)                                      │
+│   ├── ProcessJob()                                                               │
+│   │   ├── Initialize browser (Playwright)                                       │
+│   │   ├── For each page:                                                        │
+│   │   │   ├── Navigate to Google Maps                                           │
+│   │   │   ├── Execute search with scroll pagination                            │
+│   │   │   ├── Extract business data                                             │
+│   │   │   ├── Publish progress via Redis PubSub                                │
+│   │   │   └── Handle rate limits / anti-bot                                    │
+│   │   └── Post-process leads                                                    │
+│   └── Resource limits: 1 CPU, 2GB RAM per pod                                   │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              PROXY LAYER (BrightData)                            │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   Residential Proxy Pool                                                        │
+│   ├── Rotation: Per-request                                                     │
+│   ├── Geo-targeting: US, UK, CA (match search location)                        │
+│   ├── Session management: Sticky sessions for pagination                       │
+│   └── Fallback: Data center proxies for retries                                │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### Error Handling Matrix
+
+| Error Type | Detection | Handling | User Communication |
+|------------|-----------|----------|-------------------|
+| **Rate Limited** | HTTP 429, CAPTCHA | Rotate proxy, backoff 30s, retry | "Temporarily slowed. Retrying..." |
+| **Blocked** | HTTP 403, empty response | Rotate proxy, retry up to 3x | "Encountered access issue. Retrying..." |
+| **No Results** | Empty result set | Complete successfully with 0 leads | "No businesses found for this search." |
+| **Timeout** | >60s per page | Cancel page, move to next | "Some results may be incomplete." |
+| **Proxy Error** | Connection refused | Retry with different proxy | Hidden (automatic recovery) |
+| **Quota Exceeded** | Pre-flight check | Block job creation | "Insufficient credits. Upgrade or wait." |
+| **Server Error** | HTTP 5xx, exception | Retry with backoff | "Temporary issue. Retrying..." |
+| **Job Timeout** | >10 minutes total | Cancel job, save partial | "Job exceeded time limit. Partial results saved." |
+
+#### Performance Optimization
+
+**Caching Strategy:**
+```
+CACHE LAYERS
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ Layer 1: Location Geocoding Cache (Redis)                                 │
+│ ├── Key: geocode:{location_display_normalized}                           │
+│ ├── TTL: 7 days                                                          │
+│ ├── Hit rate: 90%+ (repeated locations)                                  │
+│ └── Saves: Google Geocoding API calls ($0.005 each)                      │
+├──────────────────────────────────────────────────────────────────────────┤
+│ Layer 2: Recent Search Results (PostgreSQL + Redis)                      │
+│ ├── Key: search:{query_hash}:{location_hash}:{radius}                    │
+│ ├── TTL: 24 hours                                                        │
+│ ├── Check before scraping: "Fresh results available?"                   │
+│ └── Offer: "Use cached (instant) or fresh scrape (2 min)?"              │
+├──────────────────────────────────────────────────────────────────────────┤
+│ Layer 3: Lead Deduplication (PostgreSQL)                                 │
+│ ├── Key: place_id (unique constraint)                                    │
+│ ├── Before insert: Check if lead exists                                  │
+│ └── If exists: Update freshness timestamp, skip duplicate processing    │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+**Rate Limiting:**
+```go
+// Per-user rate limiting
+type UserRateLimiter struct {
+    // Concurrent jobs per user
+    MaxConcurrentJobs int           // 3 for paid, 1 for free
+    
+    // Jobs per time period
+    MaxJobsPerHour    int           // 20 for paid, 5 for free
+    MaxJobsPerDay     int           // 100 for paid, 10 for free
+    
+    // Credit-based limiting
+    CreditCheckBeforeJob bool       // Always true
+    CreditReservation    bool       // Reserve credits on job start
+}
+
+// Global rate limiting (platform protection)
+type GlobalRateLimiter struct {
+    // Proxy pool management
+    MaxRequestsPerSecond  int       // 50 across all users
+    MaxConcurrentBrowsers int       // 100 total
+    
+    // Google Maps specific
+    SearchesPerProxyPerMinute int   // 5 (avoid detection)
+    ProxyRotationAfterBlocks  int   // 3 (rotate after 3 blocks)
+}
+```
+
+#### Monitoring & Observability
+
+**Key Metrics:**
+```yaml
+# Prometheus metrics exposed by scraping service
+
+scraping_jobs_total:
+  type: counter
+  labels: [status, workspace_tier]
+  description: Total scraping jobs by status and tier
+
+scraping_job_duration_seconds:
+  type: histogram
+  buckets: [30, 60, 120, 180, 300, 600]
+  labels: [depth, status]
+  description: Job duration by depth and final status
+
+scraping_leads_per_job:
+  type: histogram
+  buckets: [10, 25, 50, 75, 100, 150, 200]
+  labels: [depth]
+  description: Leads found per job by depth
+
+scraping_proxy_errors_total:
+  type: counter
+  labels: [error_type, proxy_provider]
+  description: Proxy errors by type and provider
+
+scraping_page_success_rate:
+  type: gauge
+  description: Rolling success rate of page scrapes (1h window)
+
+scraping_queue_depth:
+  type: gauge
+  labels: [priority]
+  description: Current jobs waiting in queue by priority
+
+scraping_worker_utilization:
+  type: gauge
+  description: Percentage of worker capacity in use
+```
+
+**Alerting Rules:**
+```yaml
+# Critical alerts (page immediately)
+- alert: ScrapingSuccessRateLow
+  expr: scraping_page_success_rate < 0.80
+  for: 5m
+  severity: critical
+  description: Scraping success rate below 80% for 5+ minutes
+
+- alert: ScrapingQueueBacklog
+  expr: scraping_queue_depth > 500
+  for: 10m
+  severity: critical
+  description: Scraping queue depth exceeds 500 jobs
+
+# Warning alerts (Slack notification)
+- alert: ScrapingLatencyHigh
+  expr: histogram_quantile(0.95, scraping_job_duration_seconds) > 300
+  for: 15m
+  severity: warning
+  description: 95th percentile job duration exceeds 5 minutes
+
+- alert: ProxyBlockRateHigh
+  expr: rate(scraping_proxy_errors_total{error_type="blocked"}[1h]) > 10
+  for: 30m
+  severity: warning
+  description: Elevated proxy block rate
+```
+
+#### Testing Requirements
+
+**Unit Tests:**
+```go
+// Required test coverage for scraping service
+TestCreateScrapingJob_ValidInput()
+TestCreateScrapingJob_InvalidQuery()
+TestCreateScrapingJob_InvalidLocation()
+TestCreateScrapingJob_InsufficientCredits()
+TestCreateScrapingJob_ConcurrentJobLimit()
+TestCancelScrapingJob_Running()
+TestCancelScrapingJob_NotOwner()
+TestScrapingProgress_WebSocket()
+TestDeduplication_ExistingLead()
+TestDeduplication_NewLead()
+TestRateLimiting_PerUser()
+TestRateLimiting_Global()
+```
+
+**Integration Tests:**
+```go
+// End-to-end scraping tests (run in staging with mock Google Maps)
+TestFullScrapingFlow_Success()
+TestFullScrapingFlow_PartialFailure()
+TestFullScrapingFlow_Cancellation()
+TestScrapingWithVerification_Pipeline()
+TestScrapingToFlywheel_DataFlow()
+```
+
+**Load Tests:**
+```yaml
+# k6 load test configuration
+scenarios:
+  sustained_load:
+    executor: constant-arrival-rate
+    rate: 10               # 10 jobs per second
+    duration: 10m
+    preAllocatedVUs: 50
+    
+  spike_test:
+    executor: ramping-arrival-rate
+    startRate: 5
+    stages:
+      - target: 50, duration: 2m  # Ramp up
+      - target: 50, duration: 5m  # Sustained spike
+      - target: 5, duration: 2m   # Ramp down
+
+thresholds:
+  http_req_duration: ['p(95)<5000']   # 95% of requests under 5s
+  http_req_failed: ['rate<0.01']      # Less than 1% failure rate
 ```
 
 ---
@@ -1081,6 +2337,294 @@ CREATE TABLE workspace_leads (
 │  └─────────────────────────────────────────────────────────────────────────────┘│
 │                                                                                  │
 └─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Technical Deep-Dive: Data Flywheel Architecture
+
+#### Flywheel Algorithm
+
+The data flywheel operates on a simple but powerful principle: every user action enriches a shared asset that benefits all users.
+
+```
+DATA FLYWHEEL FLOW
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                           DATA CONTRIBUTION FLOW                                 │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   User Scrapes "dentists in Austin, TX"                                         │
+│                │                                                                 │
+│                ▼                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  STEP 1: Execute Scrape                                                  │   │
+│   │  └── 67 businesses found from Google Maps                               │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                │                                                                 │
+│                ▼                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  STEP 2: Deduplication Check                                             │   │
+│   │  └── Check place_id against global_leads table                          │   │
+│   │  └── 45 new, 22 existing                                                 │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                │                                                                 │
+│                ▼                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  STEP 3: Merge Strategy                                                  │   │
+│   │  ├── NEW: Insert into global_leads (anonymized)                         │   │
+│   │  └── EXISTING: Update last_scraped_at, increment scrape_count           │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                │                                                                 │
+│                ▼                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  STEP 4: Verification Pipeline                                           │   │
+│   │  └── Queue all emails for verification (new and existing)               │   │
+│   │  └── Update email_status and email_verified_at                          │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                │                                                                 │
+│                ▼                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  STEP 5: User Access                                                     │   │
+│   │  └── Create workspace_leads records (private per-workspace)             │   │
+│   │  └── User sees leads in their workspace                                  │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                  │
+│   RESULT: User gets leads; global database grows; future searches faster        │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### Freshness Scoring Algorithm
+
+```python
+def calculate_freshness_score(lead: GlobalLead) -> FreshnessScore:
+    """
+    Calculate freshness score for a lead.
+    Score: 0-100 (higher = fresher)
+    
+    Factors:
+    1. Time since last verification (40% weight)
+    2. Time since last scrape (30% weight)
+    3. Verification result consistency (20% weight)
+    4. Scrape frequency signal (10% weight)
+    """
+    now = datetime.utcnow()
+    
+    # Factor 1: Verification recency (40%)
+    days_since_verification = (now - lead.email_verified_at).days
+    if days_since_verification <= 1:
+        verification_score = 100
+    elif days_since_verification <= 7:
+        verification_score = 90 - (days_since_verification * 2)
+    elif days_since_verification <= 30:
+        verification_score = 76 - ((days_since_verification - 7) * 2)
+    elif days_since_verification <= 90:
+        verification_score = 30 - ((days_since_verification - 30) * 0.5)
+    else:
+        verification_score = max(0, 15 - (days_since_verification - 90) * 0.1)
+    
+    # Factor 2: Scrape recency (30%)
+    days_since_scrape = (now - lead.last_scraped_at).days
+    if days_since_scrape <= 7:
+        scrape_score = 100
+    elif days_since_scrape <= 30:
+        scrape_score = 80 - ((days_since_scrape - 7) * 2)
+    elif days_since_scrape <= 90:
+        scrape_score = 40 - ((days_since_scrape - 30) * 0.5)
+    else:
+        scrape_score = max(0, 10)
+    
+    # Factor 3: Verification consistency (20%)
+    # If email status has been stable across multiple verifications
+    if lead.verification_history_consistent:
+        consistency_score = 100
+    else:
+        consistency_score = 50  # Email status has changed
+    
+    # Factor 4: Scrape frequency (10%)
+    # More scrapes = more demand = likely still active
+    if lead.scrape_count >= 10:
+        frequency_score = 100
+    elif lead.scrape_count >= 5:
+        frequency_score = 80
+    elif lead.scrape_count >= 2:
+        frequency_score = 60
+    else:
+        frequency_score = 40
+    
+    # Weighted total
+    total_score = (
+        verification_score * 0.40 +
+        scrape_score * 0.30 +
+        consistency_score * 0.20 +
+        frequency_score * 0.10
+    )
+    
+    return FreshnessScore(
+        score=round(total_score),
+        grade=get_grade(total_score),  # Fresh, Recent, Good, Aging, Stale
+        factors={
+            'verification': verification_score,
+            'scrape': scrape_score,
+            'consistency': consistency_score,
+            'frequency': frequency_score
+        }
+    )
+
+def get_grade(score: float) -> str:
+    if score >= 80:
+        return 'Fresh'      # 🟢 Green
+    elif score >= 60:
+        return 'Recent'     # 🟢 Green  
+    elif score >= 40:
+        return 'Good'       # 🟡 Yellow
+    elif score >= 20:
+        return 'Aging'      # 🟠 Orange
+    else:
+        return 'Stale'      # 🔴 Red
+```
+
+#### Data Isolation & Privacy Architecture
+
+```
+DATA ISOLATION MODEL
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              SHARED (Global)                                     │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   global_leads table                                                            │
+│   ├── place_id (deduplication key)                                              │
+│   ├── Business name, address, phone, website                                    │
+│   ├── Google rating, review count, category                                     │
+│   ├── Primary email, verification status                                        │
+│   ├── Freshness timestamps                                                      │
+│   └── Geographic coordinates                                                    │
+│                                                                                  │
+│   PRIVACY: All data is publicly available business information.                │
+│   NO USER DATA: No information about which users scraped what.                  │
+│   NO ENGAGEMENT: No email send/open/click data in shared layer.                │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       │ (foreign key reference)
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              PRIVATE (Per-Workspace)                             │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   workspace_leads table (workspace_id, global_lead_id)                          │
+│   ├── Tags (user-defined organization)                                          │
+│   ├── Notes (internal comments)                                                 │
+│   ├── Custom fields (user-defined data)                                         │
+│   ├── Engagement metrics (emails sent, opens, clicks)                           │
+│   ├── List memberships                                                          │
+│   └── Workflow participation                                                    │
+│                                                                                  │
+│   ISOLATION: Workspace A cannot see Workspace B's data.                         │
+│   COMPETITIVE: User notes, tags, engagement = competitive advantage.           │
+│   GDPR: Deletion removes workspace_leads, not global_leads.                     │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### Query Performance Optimization
+
+```sql
+-- Optimized indexes for common flywheel queries
+
+-- 1. Search by location (most common)
+CREATE INDEX idx_global_leads_geo ON global_leads USING GIST (geo_point);
+
+-- 2. Full-text search on business name and category
+CREATE INDEX idx_global_leads_search ON global_leads USING GIN (search_vector);
+
+-- 3. Freshness filtering
+CREATE INDEX idx_global_leads_freshness ON global_leads (last_scraped_at DESC);
+CREATE INDEX idx_global_leads_verification ON global_leads (email_verified_at DESC);
+
+-- 4. Composite index for common filter combinations
+CREATE INDEX idx_global_leads_location_fresh 
+    ON global_leads (email_status, last_scraped_at DESC)
+    WHERE email_status = 'verified';
+
+-- 5. Deduplication lookup (used during scraping)
+CREATE UNIQUE INDEX idx_global_leads_place_id ON global_leads (place_id);
+
+-- Materialized view for search (refreshed every 5 minutes)
+CREATE MATERIALIZED VIEW mv_searchable_leads AS
+SELECT 
+    gl.id,
+    gl.name,
+    gl.address,
+    gl.city,
+    gl.state,
+    gl.category,
+    gl.google_rating,
+    gl.email_status,
+    gl.last_scraped_at,
+    gl.email_verified_at,
+    gl.geo_point,
+    COALESCE(
+        EXTRACT(EPOCH FROM (NOW() - gl.email_verified_at)) / 86400,
+        999
+    ) AS days_since_verification,
+    gl.scrape_count
+FROM global_leads gl
+WHERE gl.email_status IN ('verified', 'risky');
+
+CREATE INDEX idx_mv_searchable_geo ON mv_searchable_leads USING GIST (geo_point);
+CREATE INDEX idx_mv_searchable_text ON mv_searchable_leads USING GIN (
+    to_tsvector('english', name || ' ' || COALESCE(category, ''))
+);
+
+-- Refresh schedule
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+SELECT cron.schedule('refresh_searchable_leads', '*/5 * * * *', 
+    'REFRESH MATERIALIZED VIEW CONCURRENTLY mv_searchable_leads');
+```
+
+#### Flywheel Economics Model
+
+```
+UNIT ECONOMICS IMPROVEMENT OVER TIME
+
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                   │
+│   Month 1: 100 users, 50K leads in database                                      │
+│   ├── Cache hit rate: 0%                                                         │
+│   ├── Fresh scrapes: 100% of queries                                            │
+│   ├── Cost per lead: $0.023                                                      │
+│   └── Gross margin: 77%                                                          │
+│                                                                                   │
+│   Month 6: 1,000 users, 500K leads in database                                   │
+│   ├── Cache hit rate: 40%                                                        │
+│   ├── Fresh scrapes: 60% of queries                                             │
+│   ├── Blended cost per lead: $0.014                                              │
+│   └── Gross margin: 86%                                                          │
+│                                                                                   │
+│   Year 1: 5,000 users, 2M leads in database                                      │
+│   ├── Cache hit rate: 80%                                                        │
+│   ├── Fresh scrapes: 20% of queries                                             │
+│   ├── Blended cost per lead: $0.006                                              │
+│   └── Gross margin: 94%                                                          │
+│                                                                                   │
+│   Year 3: 25,000 users, 50M leads in database                                    │
+│   ├── Cache hit rate: 95%                                                        │
+│   ├── Fresh scrapes: 5% of queries (rare/niche only)                            │
+│   ├── Blended cost per lead: $0.003                                              │
+│   └── Gross margin: 97%                                                          │
+│                                                                                   │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+COST BREAKDOWN:
+├── Fresh scrape: $0.023/lead
+│   ├── Proxy bandwidth: $0.015
+│   ├── Compute (scraping workers): $0.005
+│   └── Verification API: $0.003
+│
+└── Database query: $0.002/lead
+    ├── Database compute: $0.001
+    └── Verification re-check (if stale): $0.001
 ```
 
 ---
