@@ -204,6 +204,7 @@ describe('ConditionBlockHandler', () => {
         _context: {
           workflowId: 'test-workflow-id',
           workspaceId: 'test-workspace-id',
+          userId: mockContext.userId,
         },
       }),
       false,

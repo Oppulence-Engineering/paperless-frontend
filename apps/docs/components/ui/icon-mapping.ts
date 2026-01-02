@@ -172,6 +172,7 @@ export const blockTypeToIconMap: Record<string, IconComponent> = {
   jira_service_management: JiraServiceManagementIcon,
   kalshi: KalshiIcon,
   knowledge: PackageSearchIcon,
+  lead_scraper: SearchIcon,
   linear: LinearIcon,
   linkedin: LinkedInIcon,
   linkup: LinkupIcon,

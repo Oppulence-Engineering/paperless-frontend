@@ -79,7 +79,12 @@ export default function WorkspacePage() {
 
               if (newWorkspace?.id) {
                 logger.info(`Created default workspace: ${newWorkspace.id}`)
-                router.replace(`/workspace/${newWorkspace.id}/w`)
+                // New workspaces need onboarding (unless anonymous)
+                if (newWorkspace.onboardingCompleted === false) {
+                  router.replace(`/onboarding?workspaceId=${newWorkspace.id}`)
+                } else {
+                  router.replace(`/workspace/${newWorkspace.id}/w`)
+                }
                 return
               }
             }
@@ -97,6 +102,13 @@ export default function WorkspacePage() {
         // Get the first workspace (they should be ordered by most recent)
         const firstWorkspace = workspaces[0]
         logger.info(`Redirecting to first workspace: ${firstWorkspace.id}`)
+
+        // Check if workspace needs onboarding
+        if (firstWorkspace.onboardingCompleted === false) {
+          logger.info(`Workspace ${firstWorkspace.id} needs onboarding, redirecting`)
+          router.replace(`/onboarding?workspaceId=${firstWorkspace.id}`)
+          return
+        }
 
         // Redirect to the first workspace
         router.replace(`/workspace/${firstWorkspace.id}/w`)

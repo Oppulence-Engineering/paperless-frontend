@@ -78,6 +78,10 @@ export class ApiBlockHandler implements BlockHandler {
             workflowId: ctx.workflowId,
             workspaceId: ctx.workspaceId,
             executionId: ctx.executionId,
+            userId: ctx.userId,
+            ...(ctx.environmentVariables?.LEAD_SCRAPER_TENANT_ID
+              ? { tenantId: ctx.environmentVariables.LEAD_SCRAPER_TENANT_ID }
+              : {}),
           },
         },
         false,

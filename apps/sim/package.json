@@ -49,6 +49,7 @@
     "@opentelemetry/sdk-trace-base": "2.0.0",
     "@opentelemetry/sdk-trace-node": "2.0.0",
     "@opentelemetry/semantic-conventions": "^1.32.0",
+    "@playbookmedia/backend-client-sdk": "1.26.2-patch-3",
     "@radix-ui/react-alert-dialog": "^1.1.5",
     "@radix-ui/react-avatar": "1.1.10",
     "@radix-ui/react-checkbox": "^1.1.3",

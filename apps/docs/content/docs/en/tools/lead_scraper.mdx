@@ -1,0 +1,295 @@
+---
+title: Lead Scraper
+description: Create scraping jobs and manage leads
+---
+
+import { BlockInfoCard } from "@/components/ui/block-info-card"
+
+<BlockInfoCard 
+  type="lead_scraper"
+  color="#E0F2FE"
+/>
+
+{/* MANUAL-CONTENT-START:intro */}
+Lead Scraper lets your workflows create scraping jobs, query leads, manage lead lists, and run saved searches. The service is multi-tenant:
+
+- Organization: maps to your workspace ID
+- Tenant: account created in Lead Scraper for the current user
+
+You will need an API key to authenticate requests.
+{/* MANUAL-CONTENT-END */}
+
+
+## Usage Instructions
+
+Provide `apiKey` for every operation. `organizationId` should map to the workspace ID, and `tenantId` is the Lead Scraper tenant/account ID created during provisioning (when omitted, the tool will fall back to workflow context or workspace environment variables when available). Use `baseUrl` and `apiPrefix` to target a self-hosted Lead Scraper gateway (for example `http://localhost:8081` and `/lead-scraper-microservice/api/v1`). Inputs named `request`, `update`, or `query` accept either a JSON object or a JSON string.
+
+## Common Parameters
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `apiKey` | string | Yes | Lead Scraper API key |
+| `organizationId` | string | No | Lead Scraper organization/workspace ID (defaults to workspace context) |
+| `tenantId` | string | No | Lead Scraper tenant or account ID (defaults to workspace/user context) |
+| `baseUrl` | string | No | Override Lead Scraper base URL |
+| `apiPrefix` | string | No | Override Lead Scraper API prefix |
+
+## Common Output
+
+All Lead Scraper tools return the same envelope:
+
+| Field | Type | Description |
+| ---- | ---- | ----------- |
+| `data` | json | Lead Scraper API response payload |
+| `status` | number | HTTP status code |
+| `headers` | json | Response headers |
+| `cost` | json | Billing metadata (optional, when configured) |
+| `quota` | json | Quota snapshot (optional, when available) |
+
+## Tools
+
+### `lead_scraper_create_job`
+
+Create a new scraping job.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `request` | json | Yes | Scraping job request payload |
+
+### `lead_scraper_list_jobs`
+
+List scraping jobs.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `query` | json | No | Optional query filters |
+
+### `lead_scraper_get_job`
+
+Get a scraping job by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `jobId` | string | Yes | Scraping job ID |
+
+### `lead_scraper_delete_job`
+
+Delete a scraping job by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `jobId` | string | Yes | Scraping job ID |
+
+### `lead_scraper_download_job_results`
+
+Download scraping job results.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `jobId` | string | Yes | Scraping job ID |
+
+### `lead_scraper_list_leads`
+
+List leads with optional filters.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `query` | json | No | Optional filters and pagination |
+
+### `lead_scraper_get_lead`
+
+Get a lead by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadId` | string | Yes | Lead ID |
+
+### `lead_scraper_get_lead_stats`
+
+Get aggregated lead statistics for a workspace.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `query` | json | No | Optional filters such as time range or location |
+
+### `lead_scraper_create_lead_list`
+
+Create a lead list.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `request` | json | Yes | Lead list creation payload |
+
+### `lead_scraper_list_lead_lists`
+
+List lead lists for a workspace account.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `query` | json | No | Optional filters and pagination |
+
+### `lead_scraper_get_lead_list`
+
+Get a lead list by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadListId` | string | Yes | Lead list ID |
+
+### `lead_scraper_update_lead_list`
+
+Update a lead list.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `update` | json | Yes | Lead list update payload |
+
+### `lead_scraper_delete_lead_list`
+
+Delete a lead list by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadListId` | string | Yes | Lead list ID |
+
+### `lead_scraper_add_leads_to_list`
+
+Add leads to a list.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadListId` | string | Yes | Lead list ID |
+| `request` | json | Yes | Payload containing lead IDs to add |
+
+### `lead_scraper_remove_leads_from_list`
+
+Remove leads from a list.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadListId` | string | Yes | Lead list ID |
+| `request` | json | Yes | Payload containing lead IDs to remove |
+
+### `lead_scraper_get_leads_in_list`
+
+List leads in a lead list.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadListId` | string | Yes | Lead list ID |
+| `query` | json | No | Optional filters and pagination |
+
+### `lead_scraper_reorder_leads_in_list`
+
+Reorder leads in a list.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `leadListId` | string | Yes | Lead list ID |
+| `request` | json | Yes | Payload defining lead order |
+
+### `lead_scraper_bulk_add_to_lists`
+
+Bulk add leads to lists.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `request` | json | Yes | Payload containing lead and list IDs |
+
+### `lead_scraper_create_saved_search`
+
+Create a saved search.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `request` | json | Yes | Saved search creation payload |
+
+### `lead_scraper_list_saved_searches`
+
+List saved searches.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `query` | json | No | Optional filters and pagination |
+
+### `lead_scraper_get_saved_search`
+
+Get a saved search by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `savedSearchId` | string | Yes | Saved search ID |
+
+### `lead_scraper_update_saved_search`
+
+Update a saved search.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `update` | json | Yes | Saved search update payload |
+
+### `lead_scraper_delete_saved_search`
+
+Delete a saved search by ID.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `savedSearchId` | string | Yes | Saved search ID |
+
+### `lead_scraper_execute_saved_search`
+
+Execute a saved search.
+
+#### Input
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `savedSearchId` | string | Yes | Saved search ID |
+| `query` | json | No | Optional pagination settings |
+| `request` | json | No | Optional execution payload |
