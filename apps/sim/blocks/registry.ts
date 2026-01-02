@@ -58,6 +58,7 @@ import { JiraBlock } from '@/blocks/blocks/jira'
 import { JiraServiceManagementBlock } from '@/blocks/blocks/jira_service_management'
 import { KalshiBlock } from '@/blocks/blocks/kalshi'
 import { KnowledgeBlock } from '@/blocks/blocks/knowledge'
+import { LeadScraperBlock } from '@/blocks/blocks/lead_scraper'
 import { LinearBlock } from '@/blocks/blocks/linear'
 import { LinkedInBlock } from '@/blocks/blocks/linkedin'
 import { LinkupBlock } from '@/blocks/blocks/linkup'
@@ -204,6 +205,7 @@ export const registry: Record<string, BlockConfig> = {
   jira_service_management: JiraServiceManagementBlock,
   kalshi: KalshiBlock,
   knowledge: KnowledgeBlock,
+  lead_scraper: LeadScraperBlock,
   linear: LinearBlock,
   linkedin: LinkedInBlock,
   linkup: LinkupBlock,

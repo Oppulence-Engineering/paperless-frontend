@@ -85,7 +85,12 @@ describe('GenericBlockHandler', () => {
     const inputs = { param1: 'resolvedValue1' }
     const expectedToolParams = {
       ...inputs,
-      _context: { workflowId: mockContext.workflowId },
+      _context: {
+        workflowId: mockContext.workflowId,
+        workspaceId: mockContext.workspaceId,
+        executionId: mockContext.executionId,
+        userId: mockContext.userId,
+      },
     }
     const expectedOutput: any = { customResult: 'OK' }
 

@@ -965,6 +965,8 @@ export function prepareToolExecution(
     ...filteredUserParams,
   }
 
+  const tenantId = request.environmentVariables?.LEAD_SCRAPER_TENANT_ID
+
   const executionParams = {
     ...toolParams,
     ...(request.workflowId
@@ -974,6 +976,7 @@ export function prepareToolExecution(
             ...(request.workspaceId ? { workspaceId: request.workspaceId } : {}),
             ...(request.chatId ? { chatId: request.chatId } : {}),
             ...(request.userId ? { userId: request.userId } : {}),
+            ...(tenantId ? { tenantId } : {}),
           },
         }
       : {}),

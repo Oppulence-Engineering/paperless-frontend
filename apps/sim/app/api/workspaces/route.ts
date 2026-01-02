@@ -5,6 +5,7 @@ import { and, desc, eq, isNull } from 'drizzle-orm'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { getSession } from '@/lib/auth'
+import { ANONYMOUS_USER_ID } from '@/lib/auth/constants'
 import { buildDefaultWorkflowArtifacts } from '@/lib/workflows/defaults'
 import { saveWorkflowToNormalizedTables } from '@/lib/workflows/persistence/utils'
 
@@ -40,6 +41,10 @@ export async function GET() {
     // Migrate existing workflows to the default workspace
     await migrateExistingWorkflows(session.user.id, defaultWorkspace.id)
 
+    // Note: Lead Scraper provisioning is now handled during the onboarding flow
+    // The workspace is created with onboardingCompleted: false
+    // Users will be redirected to /onboarding to complete provisioning
+
     return NextResponse.json({ workspaces: [defaultWorkspace] })
   }
 
@@ -71,6 +76,9 @@ export async function POST(req: Request) {
 
     const newWorkspace = await createWorkspace(session.user.id, name)
 
+    // Note: Lead Scraper provisioning is now handled during the onboarding flow
+    // The workspace is created with onboardingCompleted: false
+
     return NextResponse.json({ workspace: newWorkspace })
   } catch (error) {
     logger.error('Error creating workspace:', error)
@@ -95,13 +103,17 @@ async function createWorkspace(userId: string, name: string) {
   // Create the workspace and initial workflow in a transaction
   try {
     await db.transaction(async (tx) => {
-      // Create the workspace
+      // Create the workspace with onboardingCompleted: false
+      // Anonymous users skip onboarding (onboardingCompleted: true)
+      const isAnonymous = userId === ANONYMOUS_USER_ID
       await tx.insert(workspace).values({
         id: workspaceId,
         name,
         ownerId: userId,
         billedAccountUserId: userId,
         allowPersonalApiKeys: true,
+        onboardingCompleted: isAnonymous, // Skip onboarding for anonymous users
+        onboardingStep: null,
         createdAt: now,
         updatedAt: now,
       })
@@ -154,12 +166,15 @@ async function createWorkspace(userId: string, name: string) {
   }
 
   // Return the workspace data directly instead of querying again
+  const isAnonymous = userId === ANONYMOUS_USER_ID
   return {
     id: workspaceId,
     name,
     ownerId: userId,
     billedAccountUserId: userId,
     allowPersonalApiKeys: true,
+    onboardingCompleted: isAnonymous,
+    onboardingStep: null,
     createdAt: now,
     updatedAt: now,
     role: 'owner',

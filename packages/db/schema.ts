@@ -856,6 +856,10 @@ export const workspace = pgTable('workspace', {
     .notNull()
     .references(() => user.id, { onDelete: 'no action' }),
   allowPersonalApiKeys: boolean('allow_personal_api_keys').notNull().default(true),
+  /** Whether the workspace has completed the onboarding flow */
+  onboardingCompleted: boolean('onboarding_completed').notNull().default(false),
+  /** Current onboarding step ID (for resuming onboarding) */
+  onboardingStep: text('onboarding_step'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 })
